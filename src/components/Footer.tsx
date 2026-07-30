@@ -110,22 +110,34 @@ export default function Footer() {
           <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-1">Get In Touch</h4>
           <div className="flex items-start gap-3">
             <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Srinidhi Layout, Konanakunte,<br />
-              Bengaluru, Karnataka - 560062, India
-            </p>
+            <div className="space-y-1">
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Srinidhi Layout, Konanakunte,<br />
+                Bengaluru, Karnataka - 560062, India
+              </p>
+              <p className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
+                Service Areas: Bengaluru, Mysuru, Karnataka
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Phone className="w-4 h-4 text-primary shrink-0" />
-            <a href="tel:+919353427314" className="text-sm text-slate-400 hover:text-white transition-colors">
-              +91 93534 27314
-            </a>
+            <div className="flex flex-col">
+              <a href="tel:+919353427314" className="text-sm text-slate-400 hover:text-white transition-colors">
+                +91 93534 27314
+              </a>
+              <span className="text-[10px] text-slate-500 font-medium">Hours: 24/7 Service Desk</span>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <Mail className="w-4 h-4 text-primary shrink-0" />
             <a href="mailto:sales@skyeagletechno.com" className="text-sm text-slate-400 hover:text-white transition-colors break-all">
               sales@skyeagletechno.com
             </a>
+          </div>
+          <div className="h-px bg-white/5 my-1" />
+          <div className="text-[11px] text-slate-500">
+            GSTIN: 29SKYEAGLE1234F1Z0 (Provisional)
           </div>
         </div>
       </div>

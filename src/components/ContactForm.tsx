@@ -88,9 +88,9 @@ export default function ContactForm({ defaultService }: { defaultService?: strin
           <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/30">
             <CheckCircle className="w-8 h-8 text-emerald-400" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Inquiry Form Submitted</h3>
+          <h3 className="text-xl font-bold text-white mb-2">Inquiry Form Prepared</h3>
           <p className="text-sm text-slate-400 max-w-sm mb-6">
-            Thank you! Your requirements have been captured. We are redirecting you to WhatsApp to connect with our representative (Saarika) immediately.
+            Thank you! Your enquiry has been prepared. Continue in WhatsApp to send it.
           </p>
           <button
             onClick={() => setStatus("idle")}

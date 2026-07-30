@@ -219,9 +219,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight"
           >
-            Empowering Businesses with <br />
+            Reliable IT Infrastructure, Cloud & <br />
             <span className="bg-gradient-to-r from-primary via-slate-100 to-accent bg-clip-text text-transparent">
-              Smart IT Solutions
+              Cyber Security for Modern Businesses
             </span>
           </motion.h1>
 
@@ -232,7 +232,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-base sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed"
           >
-            Reliable Networking, Cyber Security, Cloud Infrastructure, and End-to-End Managed Technology Services tailored for enterprise-grade performance.
+            Empowering enterprises with certified networking solutions, 24x7 AMC support, next-gen firewalls, and tailored technology services.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -321,25 +321,124 @@ export default function Home() {
               
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 items-center justify-items-center opacity-85">
                 {[
-                  { name: "Google Cloud", icon: "☁️" },
-                  { name: "Microsoft 365", icon: "💻" },
-                  { name: "AWS", icon: "📦" },
-                  { name: "Jio Fiber", icon: "🌐" },
-                  { name: "Sophos Security", icon: "🛡️" },
-                  { name: "Cisco Systems", icon: "🔌" },
-                  { name: "Fortinet", icon: "🧱" },
-                  { name: "Zoho Enterprise", icon: "⚙️" },
-                  { name: "Salesforce", icon: "☁️" },
-                  { name: "Adobe Cloud", icon: "🎨" },
-                  { name: "Dropbox", icon: "📁" },
-                  { name: "Trend Micro", icon: "👾" }
+                  {
+                    name: "Google Cloud",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-emerald-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Microsoft 365",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 0h11v11H0zM13 0h11v11H13zM0 13h11v11H0zM13 13h11v11H13z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "AWS",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Jio Fiber",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-red-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="2" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Sophos",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-cyan-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Cisco Systems",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-indigo-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="2" y="14" width="2" height="6" />
+                        <rect x="6" y="8" width="2" height="12" />
+                        <rect x="10" y="4" width="2" height="16" />
+                        <rect x="14" y="4" width="2" height="16" />
+                        <rect x="18" y="8" width="2" height="12" />
+                        <rect x="22" y="14" width="2" height="6" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Fortinet",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-red-500 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Zoho",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-amber-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="6" cy="6" r="4" />
+                        <circle cx="18" cy="6" r="4" />
+                        <circle cx="6" cy="18" r="4" />
+                        <circle cx="18" cy="18" r="4" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Salesforce",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-sky-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Adobe",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-rose-500 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14.3 2.1l9.2 20.3h-5.4l-3-7.2H9.3l-3 7.2H1L10.2 2.1h4.1zM12 6.5L9.9 11.5h4.2L12 6.5z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Dropbox",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-blue-500 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 2L1 5.3l5 3.3 5-3.3L6 2zm12 0l-5 3.3 5 3.3 5-3.3L18 2zM1 12l5 3.3 5-3.3-5-3.3-5 3.3zm17-3.3l-5 3.3 5 3.3 5-3.3-5-3.3zM6 16.3l6 4 6-4-6-4.1-6 4.1z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    name: "Trend Micro",
+                    svg: (
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-red-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 2a10 10 0 1010 10" />
+                        <path d="M12 6a6 6 0 106 6" />
+                        <circle cx="12" cy="12" r="2" />
+                      </svg>
+                    )
+                  }
                 ].map((logo, idx) => (
                   <div
                     key={idx}
                     className="flex flex-col items-center justify-center p-3 w-full rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 transition-all hover:bg-slate-900/50 group"
                   >
-                    <span className="text-xl mb-1.5 group-hover:scale-110 transition-transform duration-300">{logo.icon}</span>
-                    <span className="text-[10px] font-bold text-slate-400 tracking-wider text-center group-hover:text-white transition-colors">{logo.name}</span>
+                    <div className="mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {logo.svg}
+                    </div>
+                    <span className="text-[9px] font-bold text-slate-400 tracking-wider text-center group-hover:text-white transition-colors">{logo.name}</span>
                   </div>
                 ))}
               </div>

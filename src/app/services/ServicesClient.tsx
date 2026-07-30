@@ -141,6 +141,52 @@ const categories = [
   { value: "support", label: "Support & AMC" },
 ];
 
+function getServiceIllustration(category: string) {
+  switch (category) {
+    case "infra":
+      return (
+        <svg className="absolute top-4 right-4 w-16 h-16 text-white/[0.02] group-hover:text-primary/[0.07] transition-colors pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="20" y="20" width="60" height="15" rx="2" />
+          <rect x="20" y="42" width="60" height="15" rx="2" />
+          <rect x="20" y="65" width="60" height="15" rx="2" />
+          <circle cx="30" cy="27.5" r="2.5" fill="currentColor" />
+          <circle cx="30" cy="49.5" r="2.5" fill="currentColor" />
+          <circle cx="30" cy="72.5" r="2.5" fill="currentColor" />
+          <circle cx="40" cy="27.5" r="1.5" fill="currentColor" />
+          <circle cx="40" cy="49.5" r="1.5" fill="currentColor" />
+          <circle cx="40" cy="72.5" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    case "network":
+      return (
+        <svg className="absolute top-4 right-4 w-16 h-16 text-white/[0.02] group-hover:text-primary/[0.07] transition-colors pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="50" cy="25" r="8" />
+          <circle cx="25" cy="65" r="8" />
+          <circle cx="75" cy="65" r="8" />
+          <line x1="45" y1="31" x2="30" y2="59" />
+          <line x1="55" y1="31" x2="70" y2="59" />
+          <line x1="33" y1="65" x2="67" y2="65" strokeDasharray="3 3" />
+        </svg>
+      );
+    case "cloud":
+      return (
+        <svg className="absolute top-4 right-4 w-16 h-16 text-white/[0.02] group-hover:text-primary/[0.07] transition-colors pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M50 25c-15 0-20 10-20 15 0 2 0 5 3 7-5 1-8 5-8 10 0 7 6 13 13 13h24c7 0 13-6 13-13 0-5-3-9-8-10 3-2 3-5 3-7 0-5-5-15-20-15z" />
+          <path d="M38 52h24M44 58h12" strokeWidth="1" />
+        </svg>
+      );
+    case "support":
+    default:
+      return (
+        <svg className="absolute top-4 right-4 w-16 h-16 text-white/[0.02] group-hover:text-primary/[0.07] transition-colors pointer-events-none" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="20" y="25" width="60" height="40" rx="3" />
+          <path d="M35 65l-5 12h40l-5-12" />
+          <line x1="20" y1="53" x2="80" y2="53" />
+        </svg>
+      );
+  }
+}
+
 function ServicesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -223,8 +269,9 @@ function ServicesContent() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                   key={service.id}
-                  className="gradient-border-card p-6 flex flex-col justify-between group hover:-translate-y-1 transition-all duration-300"
+                  className="gradient-border-card p-6 flex flex-col justify-between group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
                 >
+                  {getServiceIllustration(service.category)}
                   <div>
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-5 border border-primary/20 group-hover:scale-105 transition-all">
                       <Icon className="w-5 h-5" />
