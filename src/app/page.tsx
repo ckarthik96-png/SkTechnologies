@@ -942,7 +942,7 @@ export default function Home() {
                 unit: "/ day",
                 features: ["Core i5 / i7 setups", "16GB RAM / SSD", "Immediate replacement"],
                 cta: "Request Rental",
-                link: "/contact?service=Hardware%20Rentals",
+                link: "/refurbished-products",
                 featured: false,
               },
               {
@@ -952,7 +952,7 @@ export default function Home() {
                 unit: "/ month",
                 features: ["Laser MFP Printer", "Toner support included", "Network print capabilities"],
                 cta: "Request Rental",
-                link: "/contact?service=Hardware%20Rentals",
+                link: "/refurbished-products",
                 featured: false,
               },
               {
