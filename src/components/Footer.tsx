@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
           <div className="h-px bg-white/5 my-1" />
           <div className="text-[11px] text-slate-500">
-            GSTIN: 29SKYEAGLE1234F1Z0 (Provisional)
+            GST Registration: In Progress
           </div>
         </div>
       </div>

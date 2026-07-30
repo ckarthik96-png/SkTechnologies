@@ -324,7 +324,7 @@ export default function Home() {
                   {
                     name: "Google Cloud",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-emerald-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                       </svg>
                     )
@@ -332,7 +332,7 @@ export default function Home() {
                   {
                     name: "Microsoft 365",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 0h11v11H0zM13 0h11v11H13zM0 13h11v11H0zM13 13h11v11H13z" />
                       </svg>
                     )
@@ -340,7 +340,7 @@ export default function Home() {
                   {
                     name: "AWS",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-orange-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                       </svg>
                     )
@@ -348,7 +348,7 @@ export default function Home() {
                   {
                     name: "Jio Fiber",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-red-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10" />
                         <circle cx="12" cy="12" r="6" />
                         <circle cx="12" cy="12" r="2" />
@@ -358,7 +358,7 @@ export default function Home() {
                   {
                     name: "Sophos",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-cyan-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                       </svg>
                     )
@@ -366,7 +366,7 @@ export default function Home() {
                   {
                     name: "Cisco Systems",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-indigo-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <rect x="2" y="14" width="2" height="6" />
                         <rect x="6" y="8" width="2" height="12" />
                         <rect x="10" y="4" width="2" height="16" />
@@ -379,7 +379,7 @@ export default function Home() {
                   {
                     name: "Fortinet",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-red-500 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
                       </svg>
@@ -388,7 +388,7 @@ export default function Home() {
                   {
                     name: "Zoho",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-amber-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <circle cx="6" cy="6" r="4" />
                         <circle cx="18" cy="6" r="4" />
                         <circle cx="6" cy="18" r="4" />
@@ -399,7 +399,7 @@ export default function Home() {
                   {
                     name: "Salesforce",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-sky-400 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                       </svg>
                     )
@@ -407,7 +407,7 @@ export default function Home() {
                   {
                     name: "Adobe",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-rose-500 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M14.3 2.1l9.2 20.3h-5.4l-3-7.2H9.3l-3 7.2H1L10.2 2.1h4.1zM12 6.5L9.9 11.5h4.2L12 6.5z" />
                       </svg>
                     )
@@ -415,7 +415,7 @@ export default function Home() {
                   {
                     name: "Dropbox",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-blue-500 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6 2L1 5.3l5 3.3 5-3.3L6 2zm12 0l-5 3.3 5 3.3 5-3.3L18 2zM1 12l5 3.3 5-3.3-5-3.3-5 3.3zm17-3.3l-5 3.3 5 3.3 5-3.3-5-3.3zM6 16.3l6 4 6-4-6-4.1-6 4.1z" />
                       </svg>
                     )
@@ -423,7 +423,7 @@ export default function Home() {
                   {
                     name: "Trend Micro",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-red-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                         <path d="M12 2a10 10 0 1010 10" />
                         <path d="M12 6a6 6 0 106 6" />
                         <circle cx="12" cy="12" r="2" />
