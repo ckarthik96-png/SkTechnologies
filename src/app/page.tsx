@@ -921,6 +921,42 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* --- DOWNLOADS STRIP --- */}
+      <div className="bg-slate-900/60 border-y border-white/5 py-8 px-6 relative z-10">
+        <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-bold text-white text-sm">Downloads Center</h4>
+              <p className="text-xs text-slate-400">Company Profile, AMC Service Sheet &amp; Product Catalog — free PDFs</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href="/downloads/SkyEagle-Company-Profile-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Company Profile
+            </a>
+            <a href="/downloads/SkyEagle-AMC-Service-Sheet-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              AMC Service Sheet
+            </a>
+            <a href="/downloads/SkyEagle-Product-Catalog-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Product Catalog
+            </a>
+            <a href="/downloads" className="btn-gradient px-4 py-2 rounded-lg text-[11px] font-bold uppercase tracking-wide inline-flex items-center gap-1.5">
+              View All
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* --- 12. PRICING --- */}
       <section id="pricing" className="section-padding relative z-10 px-6 border-b border-white/5">
