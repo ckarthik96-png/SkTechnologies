@@ -126,7 +126,7 @@ const products = [
     specs: "Monochrome Laser | Print, Scan, Copy, Fax | Auto Duplex | 40 ppm | Wi-Fi",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹1,499 / month",
   },
   {
     id: 13,
@@ -136,7 +136,7 @@ const products = [
     specs: "Color InkTank | Print, Scan, Copy | Wireless | High Page Yield",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹999 / month",
   },
   {
     id: 14,
@@ -146,7 +146,7 @@ const products = [
     specs: "Monochrome Laser MFP | Print, Scan, Copy | 27 ppm | Auto Duplex | Network Ready",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹1,299 / month",
   },
   {
     id: 15,
@@ -156,7 +156,7 @@ const products = [
     specs: "Monochrome Laser | 45 ppm | Auto Duplex | Large 550-sheet Tray",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹2,499 / month",
   },
   {
     id: 16,
@@ -166,7 +166,7 @@ const products = [
     specs: "Monochrome Laser | Auto Duplex | 30 ppm | USB | Compact Desktop Design",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹899 / month",
   },
   {
     id: 17,
@@ -176,7 +176,7 @@ const products = [
     specs: "Monochrome Laser MFP | Print, Scan, Copy, Fax | Wi-Fi | Auto Duplex | 34 ppm",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹1,199 / month",
   },
   {
     id: 18,
@@ -186,7 +186,7 @@ const products = [
     specs: "Color Laser MFP | Print, Scan, Copy | Wi-Fi | Auto Duplex | 22 ppm | Touchscreen",
     condition: "Office Ready",
     warranty: "Maintenance Included",
-    price: "Contact for Rates",
+    price: "₹1,799 / month",
   },
 ];
 
