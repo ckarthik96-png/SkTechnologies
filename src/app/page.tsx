@@ -938,15 +938,15 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href="/downloads/SkyEagle-Technologies-Company-Profile-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
+            <a href="/downloads/SkyEagle-Company-Profile-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Company Profile
             </a>
-            <a href="/downloads/SkyEagle-Technologies-AMC-Service-Sheet-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
+            <a href="/downloads/SkyEagle-AMC-Service-Sheet-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               AMC Service Sheet
             </a>
-            <a href="/downloads/SkyEagle-Technologies-Product-Catalog-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
+            <a href="/downloads/SkyEagle-Product-Catalog-2025.pdf" download className="px-4 py-2 bg-white/5 border border-white/10 hover:border-primary/30 hover:bg-white/10 rounded-lg text-[11px] font-semibold text-white transition-all inline-flex items-center gap-1.5">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Product Catalog
             </a>
