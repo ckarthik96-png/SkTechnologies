@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ShieldCheck, Check, ShoppingCart, Info } from "lucide-react";
@@ -117,6 +118,46 @@ const products = [
     warranty: "6 Months Support",
     price: "Inquire Price",
   },
+  {
+    id: 12,
+    name: "HP LaserJet Pro MFP M428fdw",
+    category: "printers",
+    brand: "HP",
+    specs: "Monochrome Laser | Print, Scan, Copy, Fax | Auto Duplex | 40 ppm | Wi-Fi",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
+  {
+    id: 13,
+    name: "Epson EcoTank L3250 Color MFP",
+    category: "printers",
+    brand: "Epson",
+    specs: "Color InkTank | Print, Scan, Copy | Wireless | High Page Yield",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
+  {
+    id: 14,
+    name: "Canon imageCLASS MF244dw",
+    category: "printers",
+    brand: "Canon",
+    specs: "Monochrome Laser MFP | Print, Scan, Copy | 27 ppm | Auto Duplex | Network Ready",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
+  {
+    id: 15,
+    name: "HP LaserJet Enterprise M507dn",
+    category: "printers",
+    brand: "HP",
+    specs: "Monochrome Laser | 45 ppm | Auto Duplex | Large 550-sheet Tray",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
 ];
 
 const categories = [
@@ -125,12 +166,22 @@ const categories = [
   { value: "desktops", label: "Desktops & AIO" },
   { value: "workstations", label: "Workstations" },
   { value: "monitors", label: "Monitors" },
+  { value: "printers", label: "Printer Rentals" },
   { value: "networking", label: "Networking Gear" },
   { value: "spares", label: "Genuine Spares" },
 ];
 
 export default function RefurbishedProductsClient() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const category = searchParams.get("category");
+    if (category) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setActiveCategory(category);
+    }
+  }, [searchParams]);
 
   const filteredProducts = activeCategory === "all"
     ? products

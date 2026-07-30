@@ -948,11 +948,11 @@ export default function Home() {
               {
                 title: "Printer Rentals",
                 desc: "High-speed laser printing for office paperwork.",
-                price: "₹1,499",
-                unit: "/ month",
+                price: "Custom",
+                unit: "plan rates",
                 features: ["Laser MFP Printer", "Toner support included", "Network print capabilities"],
                 cta: "Request Rental",
-                link: "/refurbished-products",
+                link: "/refurbished-products?category=printers",
                 featured: false,
               },
               {

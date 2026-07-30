@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import RefurbishedProductsClient from "./RefurbishedProductsClient";
 
 export const metadata: Metadata = {
@@ -8,5 +9,13 @@ export const metadata: Metadata = {
 };
 
 export default function RefurbishedProductsPage() {
-  return <RefurbishedProductsClient />;
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-dark-bg flex items-center justify-center text-slate-400">
+        Loading Catalog...
+      </div>
+    }>
+      <RefurbishedProductsClient />
+    </Suspense>
+  );
 }
