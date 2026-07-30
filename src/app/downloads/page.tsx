@@ -13,7 +13,7 @@ const downloads = [
     subtitle: "Who We Are & What We Do",
     description:
       "A complete overview of SkyEagle Technologies — our mission, service portfolio, technology partnerships, industries served, and contact details. Ideal for sharing with procurement teams.",
-    file: "/downloads/SkyEagle-Company-Profile-2025.pdf",
+    file: "/downloads/SkyEagle-Technologies-Company-Profile-2025.pdf",
     size: "~320 KB",
     pages: "3 Pages",
     updated: "July 2025",
@@ -33,7 +33,7 @@ const downloads = [
     subtitle: "Annual Maintenance Contract Plans",
     description:
       "Detailed breakdown of our three AMC tiers (Basic, Standard, Enterprise) including SLA commitments, coverage scope, pricing, response times, and contract terms.",
-    file: "/downloads/SkyEagle-AMC-Service-Sheet-2025.pdf",
+    file: "/downloads/SkyEagle-Technologies-AMC-Service-Sheet-2025.pdf",
     size: "~280 KB",
     pages: "2 Pages",
     updated: "July 2025",
@@ -53,7 +53,7 @@ const downloads = [
     subtitle: "Hardware, Rentals & IT Services",
     description:
       "Full catalog of refurbished laptops, desktops, workstations, monitors, printer rentals, networking equipment, genuine spare parts, and managed IT services with pricing.",
-    file: "/downloads/SkyEagle-Product-Catalog-2025.pdf",
+    file: "/downloads/SkyEagle-Technologies-Product-Catalog-2025.pdf",
     size: "~350 KB",
     pages: "3 Pages",
     updated: "July 2025",
