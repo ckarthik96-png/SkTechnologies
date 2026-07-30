@@ -17,36 +17,39 @@ import {
   Clock,
   Briefcase,
   ExternalLink,
-  Award
+  Award,
+  MapPin,
+  CheckCircle2,
+  AlertTriangle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroBackground from "@/components/HeroBackground";
 import ContactForm from "@/components/ContactForm";
 import Accordion from "@/components/Accordion";
 
-// Services subset to display on home page
+// Services subset to display on home page preview
 const featuredServices = [
   {
-    title: "Networking Solutions",
-    description: "Enterprise-grade wired & wireless network design, Wi-Fi deployments, and robust router configurations.",
-    icon: Network,
+    title: "IT Infrastructure",
+    description: "Designing, sourcing, and configuring full office network hardware, virtualization clusters, and cable structures.",
+    icon: Cpu,
     color: "from-blue-500 to-indigo-500",
   },
   {
-    title: "Cyber Security & Firewall",
-    description: "Advanced threat protection, multi-layer firewall installations, and absolute data defense systems.",
-    icon: ShieldCheck,
-    color: "from-red-500 to-purple-500",
+    title: "Networking & Wi-Fi",
+    description: "Robust WAN routing, LAN segmentations, VLAN routing tables, switches, and high density AP tuning.",
+    icon: Network,
+    color: "from-cyan-500 to-blue-500",
   },
   {
-    title: "Cloud & Email Solutions",
-    description: "Seamless Microsoft 365, Google Workspace, and scalable cloud backups for secure remote collaboration.",
+    title: "Cloud & M365 Integration",
+    description: "Secure migrations, backup replication pipelines, exchange online setups, and cloud AD setups.",
     icon: Cloud,
     color: "from-sky-500 to-cyan-500",
   },
   {
-    title: "Server & IT Infrastructure",
-    description: "Active server management, secure domain controllers, storage systems, and virtualization solutions.",
+    title: "Cyber Security & Firewall",
+    description: "Threat detection scanning, end-point antivirus monitoring, and Sophos/Fortinet next-gen firewall setups.",
     icon: Server,
     color: "from-amber-500 to-orange-500",
   },
@@ -54,12 +57,13 @@ const featuredServices = [
 
 // Why Choose Us features
 const features = [
-  { title: "24x7 Support", desc: "Constant remote and onsite monitoring to prevent downtime.", icon: Clock },
-  { title: "Certified Engineers", desc: "Expert staff certified in security, networking, and server platforms.", icon: Award },
-  { title: "Enterprise Solutions", desc: "Top-tier architectures scaled down for growing businesses.", icon: Cpu },
-  { title: "Affordable Pricing", desc: "Transparent costing models built around your operating budget.", icon: Briefcase },
-  { title: "Fast Deployment", desc: "Rapid project rollouts, testing, and documentation procedures.", icon: Workflow },
-  { title: "Trusted Partner", desc: "A reliable technology advisor focused on your business growth.", icon: Users },
+  { title: "Certified Engineers", desc: "Expert systems administrators certified in OEM networking, security, and cloud systems.", icon: Award },
+  { title: "Genuine Hardware", desc: "We supply brand new box-pack spares and corporate certified refurbished IT assets.", icon: Cpu },
+  { title: "Enterprise Security", desc: "Zero Trust policy mapping, secure VPN tunnels, and encrypted cloud backups.", icon: ShieldCheck },
+  { title: "On-Site & Remote Support", desc: "Dedicated remote service desk operations and rapid 2-4 hour onsite SLAs in Bengaluru.", icon: Clock },
+  { title: "Transparent Pricing", desc: "Flexible contracts without hidden costs, tailored to your commercial operating budget.", icon: Briefcase },
+  { title: "Fast Response", desc: "Instant direct WhatsApp routing and priority ticket resolution sweeps.", icon: Workflow },
+  { title: "Long-Term Maintenance", desc: "Structured Annual Maintenance Contracts (AMC) to keep your office hardware scaled.", icon: Users },
 ];
 
 // Testimonials list
@@ -145,365 +149,405 @@ const faqItems = [
   },
 ];
 
-const bespokeTabs = [
-  {
-    label: "Web Applications",
-    title: "Web Applications & Portals",
-    desc: "We build secure, responsive web applications and portals that allow your customers or team to sync databases, track service requests, and manage M365 accounts across any device seamlessly.",
-    code: `import { syncNode, dbConnect } from "@skyeagle/sync-sdk";
-
-export default async function SyncService() {
-  const connection = await dbConnect(process.env.DATABASE_URL);
-  const nodeStatus = await syncNode({
-    nodeId: "SE-BLR-062",
-    clientName: "SkyEagle Technologies",
-    protocols: ["HTTPS", "WSS"],
-    encryption: "AES-256-GCM"
-  });
-  return nodeStatus.active ? "Sync Successful" : "Failover Initiated";
-}`,
-    fileName: "app/sync-service.ts"
-  },
-  {
-    label: "Networking Config",
-    title: "Enterprise LAN & WAN Routing",
-    desc: "Robust network topology configurations defining secure VLAN routing tables, multi-WAN load balancing interfaces, and high-density Access Point controls.",
-    code: `interface GigabitEthernet0/1
- description WAN_PRIMARY_FIBER
- ip address 192.168.10.2 255.255.255.252
- ip nat outside
-!
-interface VLAN 62
- description CORPORATE_OFFICE_LAN
- ip address 10.62.1.1 255.255.255.0
- ip nat inside
- ip access-group SECURE_TRAFFIC in`,
-    fileName: "cisco-ios.config"
-  },
-  {
-    label: "Cloud Architecture",
-    title: "Terraform Infrastructure as Code",
-    desc: "Automated provisioning of secure Amazon Web Services (AWS) or Microsoft Azure cloud structures, establishing encrypted backup buckets and identity rules.",
-    code: `resource "aws_s3_bucket" "skyeagle_backup" {
-  bucket = "skyeagle-secure-backups-blr"
-  tags = {
-    Environment = "Production"
-    Compliance  = "HIPAA-Encrypted"
-  }
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
-  bucket = aws_s3_bucket.skyeagle_backup.id
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "aws:kms"
-    }
-  }
-}`,
-    fileName: "main.tf"
-  },
-  {
-    label: "Cyber Security",
-    title: "Next-Gen Firewall Rules",
-    desc: "Rigid security rules configurations enforcing Deep Packet Inspection, sandboxing logs, and blocking unauthorized database access attempts.",
-    code: `firewall-policy:
-  name: SECURE_INBOUND_FILTER
-  target: WAN_PORT_1
-  action: INSPECT
-  rules:
-    - source: ANY
-      destination: DB_ZONE_VLAN62
-      ports: [3306, 5432]
-      action: DENY_AND_LOG
-    - source: VPN_IPSEC_TUNNEL
-      destination: CORPORATE_OFFICE_LAN
-      action: ALLOW`,
-    fileName: "fortigate-policy.yaml"
-  }
+// Solutions by Industry
+const industries = [
+  { name: "Healthcare", example: "Secure patient systems & HIPAA compliance log vaults", icon: ShieldCheck },
+  { name: "Education", example: "Campus network structuring & high-density student Wi-Fi", icon: Award },
+  { name: "Retail", example: "POS database sync & unified surveillance IP CCTV arrays", icon: Users },
+  { name: "Manufacturing", example: "Industrial rugged routing, biometric logs & server vaults", icon: Server },
+  { name: "Corporate", example: "Microsoft 365, backup vaults & local Active Directory AD", icon: Cpu },
+  { name: "Startups", example: "Fast-tracked laptop rentals & agile cloud migrations", icon: Workflow },
 ];
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [selectedBespokeTab, setSelectedBespokeTab] = useState(0);
+  const [callbackName, setCallbackName] = useState("");
+  const [callbackPhone, setCallbackPhone] = useState("");
+  const [callbackTime, setCallbackTime] = useState("");
+  const [callbackSent, setCallbackSent] = useState(false);
 
-  // Auto-scroll testimonials
   useEffect(() => {
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 6000);
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
+
+  const handleCallbackSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!callbackName || !callbackPhone) return;
+    
+    // Format WhatsApp message
+    const message = `Hello Saarika, I would like to request a callback.\nName: ${callbackName}\nPhone: ${callbackPhone}\nPreferred Time: ${callbackTime || "Immediate"}`;
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/919353427314?text=${encoded}`, "_blank");
+    setCallbackSent(true);
+    setCallbackName("");
+    setCallbackPhone("");
+    setCallbackTime("");
+  };
 
   return (
     <div className="relative overflow-hidden bg-dark-bg min-h-screen">
-      {/* Glowspots */}
-      <div className="glow-spot -top-20 -left-20 bg-primary/20" />
-      <div className="glow-spot top-1/3 -right-20 bg-accent/15" />
-      <div className="glow-spot bottom-10 left-1/3 bg-secondary/10" />
+      {/* Dynamic 3D Hero Background Particle System */}
+      <HeroBackground />
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-20 px-6 overflow-hidden">
-        <HeroBackground />
-        
-        <div className="container mx-auto max-w-5xl text-center z-10">
-          {/* Animated badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-slate-300 font-semibold mb-8 uppercase tracking-widest backdrop-blur"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Reliable Enterprise IT Support
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight"
-          >
-            Reliable IT Infrastructure, Cloud & <br />
-            <span className="bg-gradient-to-r from-primary via-slate-100 to-accent bg-clip-text text-transparent">
-              Cyber Security for Modern Businesses
-            </span>
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed"
-          >
-            Empowering enterprises with certified networking solutions, 24x7 AMC support, next-gen firewalls, and tailored technology services.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link
-              href="/contact"
-              className="btn-gradient w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase inline-flex items-center justify-center gap-2 group cursor-pointer"
+      {/* --- 1. HERO SECTION --- */}
+      <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden">
+        <div className="container mx-auto max-w-6xl relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Column: Text & Buttons */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-extrabold uppercase tracking-widest text-primary"
             >
-              Get Free Quote
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/services"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-sm font-bold tracking-wider uppercase inline-flex items-center justify-center gap-2 text-white transition-all backdrop-blur cursor-pointer"
-            >
-              Explore Services
-            </Link>
-          </motion.div>
-        </div>
+              <Award className="w-3.5 h-3.5" /> ISO Certified IT Services
+            </motion.div>
 
-        {/* Floating details / technology grid look */}
-        <div className="absolute bottom-10 left-0 right-0 hidden md:flex items-center justify-center gap-12 text-slate-500 text-xs tracking-wider uppercase font-semibold">
-          <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-primary" /> CYBER SECURITY</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
-          <span className="flex items-center gap-1.5"><Network className="w-4 h-4 text-accent" /> ENTERPRISE WI-FI</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
-          <span className="flex items-center gap-1.5"><Cloud className="w-4 h-4 text-secondary" /> M365 CLOUD</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
-          <span className="flex items-center gap-1.5"><Server className="w-4 h-4 text-primary" /> AMC SUPPORT</span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight"
+            >
+              Enterprise IT Infrastructure, Cloud, Cyber Security & Data Recovery Solutions
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-sm md:text-base text-slate-300 max-w-xl leading-relaxed"
+            >
+              Empowering commercial enterprises with certified networking solutions, 24x7 AMC support, next-gen firewalls, and data recovery services.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <Link
+                href="/contact"
+                className="btn-gradient px-7 py-3.5 rounded-full text-xs font-black uppercase tracking-wider inline-flex items-center gap-2 shadow-lg shadow-primary/25"
+              >
+                Get Free Quote
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="https://wa.me/919353427314"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-3.5 rounded-full bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-500/30 hover:border-emerald-500/50 text-emerald-400 text-xs font-black uppercase tracking-wider transition-all inline-flex items-center gap-2"
+              >
+                WhatsApp Direct
+              </a>
+              <a
+                href="tel:+919353427314"
+                className="px-7 py-3.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white text-xs font-black uppercase tracking-wider transition-all inline-flex items-center gap-2"
+              >
+                Call Specialist
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Callback Request form widget */}
+          <div className="lg:col-span-5 relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="glass-card p-6 md:p-8 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md relative"
+            >
+              <h3 className="text-lg font-bold text-white mb-2">Request a Callback</h3>
+              <p className="text-xs text-slate-400 mb-6">Specify your number and our coordinator will dial you back.</p>
+              
+              <form onSubmit={handleCallbackSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={callbackName}
+                    onChange={(e) => setCallbackName(e.target.value)}
+                    placeholder="Enter your name"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Phone Number</label>
+                  <input
+                    type="tel"
+                    required
+                    value={callbackPhone}
+                    onChange={(e) => setCallbackPhone(e.target.value)}
+                    placeholder="+91 98765 43210"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Preferred Time (Optional)</label>
+                  <input
+                    type="text"
+                    value={callbackTime}
+                    onChange={(e) => setCallbackTime(e.target.value)}
+                    placeholder="e.g. 3:00 PM, Immediate"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                  />
+                </div>
+                
+                <button
+                  type="submit"
+                  className="w-full btn-gradient py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
+                >
+                  Send Request
+                </button>
+              </form>
+
+              {callbackSent && (
+                <div className="absolute inset-0 bg-dark-bg/95 rounded-2xl flex flex-col items-center justify-center text-center p-6">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mb-3" />
+                  <h4 className="font-bold text-white text-sm">Request Sent!</h4>
+                  <p className="text-[11px] text-slate-400 mt-1 max-w-[200px]">We have loaded your callback request in WhatsApp. Tap send to submit.</p>
+                  <button onClick={() => setCallbackSent(false)} className="text-xs text-primary font-bold mt-4 uppercase">Request Another</button>
+                </div>
+              )}
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* --- STATS / OVERVIEW SECTION --- */}
-      <section className="relative px-6 py-12 border-t border-b border-white/5 bg-[#030610]/80 backdrop-blur z-10">
-        <div className="container mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { count: "500+", label: "Active Network Nodes" },
-            { count: "99.99%", label: "Uptime Maintained" },
-            { count: "24/7", label: "Incident Support" },
-            { count: "15+", label: "Certified IT Specialists" },
-          ].map((stat, idx) => (
-            <div key={idx} className="text-center">
-              <div className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-white to-primary bg-clip-text text-transparent mb-1">
-                {stat.count}
-              </div>
-              <div className="text-xs sm:text-sm text-slate-400 font-medium">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+      {/* Emergency support banner */}
+      <div className="bg-rose-600/10 border-y border-rose-500/20 py-3.5 px-6 relative z-10 text-center">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-xs">
+          <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0" />
+          <span className="text-rose-200"><strong>Need Urgent IT Support?</strong> Systems down or network outages?</span>
+          <a href="tel:+919353427314" className="bg-rose-600 hover:bg-rose-700 text-white font-bold px-3 py-1 rounded transition-colors uppercase text-[10px]">Call Emergency Line</a>
         </div>
-      </section>
+      </div>
 
-      {/* --- PARTNERS / TECHNOLOGY ENABLER SECTION --- */}
-      <section className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
+      {/* --- 2. TRUSTED TECHNOLOGY PARTNERS --- */}
+      <section id="partners" className="py-20 relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column: Text */}
-            <div className="space-y-6">
-              <h2 className="text-xs uppercase tracking-widest text-primary font-bold">Technology Enabler</h2>
-              <h3 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-                Grow Your Business 10x with <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">SkyEagle</span>
-              </h3>
-              <p className="text-base text-slate-400 leading-relaxed max-w-lg">
-                SkyEagle Technologies brings all of your business requirements under one roof, integrating services, sales operations, networks, cybersecurity, and cloud support altogether.
+          <div className="text-center mb-12">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-2">OEM Partners</h2>
+            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Trusted Technology Partners</h3>
+          </div>
+
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-6 items-center justify-items-center opacity-90">
+            {[
+              {
+                name: "Google Cloud",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                  </svg>
+                )
+              },
+              {
+                name: "Microsoft 365",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 23 23">
+                    <rect x="0" y="0" width="10" height="10" fill="#f25022" />
+                    <rect x="12" y="0" width="10" height="10" fill="#7fba00" />
+                    <rect x="0" y="12" width="10" height="10" fill="#00a4ef" />
+                    <rect x="12" y="12" width="10" height="10" fill="#ffb900" />
+                  </svg>
+                )
+              },
+              {
+                name: "AWS",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#ff9900" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )
+              },
+              {
+                name: "Jio Fiber",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="#0059c3" strokeWidth="2.5" fill="none" />
+                    <circle cx="12" cy="12" r="6" stroke="#00a8e8" strokeWidth="2" fill="none" />
+                    <circle cx="12" cy="12" r="2" fill="#0059c3" />
+                  </svg>
+                )
+              },
+              {
+                name: "Sophos",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#0055ff" />
+                  </svg>
+                )
+              },
+              {
+                name: "Cisco Systems",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="#049fd9">
+                    <rect x="2" y="14" width="2" height="6" rx="0.5" />
+                    <rect x="6" y="8" width="2" height="12" rx="0.5" />
+                    <rect x="10" y="4" width="2" height="16" rx="0.5" />
+                    <rect x="14" y="4" width="2" height="16" rx="0.5" />
+                    <rect x="18" y="8" width="2" height="12" rx="0.5" />
+                    <rect x="22" y="14" width="2" height="6" rx="0.5" />
+                  </svg>
+                )
+              },
+              {
+                name: "Fortinet",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#c32026" strokeWidth="2.5" />
+                    <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#c32026" strokeWidth="2" />
+                  </svg>
+                )
+              },
+              {
+                name: "Zoho",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="8" height="8" rx="1" fill="#e53935" />
+                    <rect x="14" y="2" width="8" height="8" rx="1" fill="#1e88e5" />
+                    <rect x="2" y="14" width="8" height="8" rx="1" fill="#43a047" />
+                    <rect x="14" y="14" width="8" height="8" rx="1" fill="#fdd835" />
+                  </svg>
+                )
+              },
+              {
+                name: "Salesforce",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="#00a1e0">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                  </svg>
+                )
+              },
+              {
+                name: "Adobe",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="#ff0000">
+                    <path d="M14.3 2.1l9.2 20.3h-5.4l-3-7.2H9.3l-3 7.2H1L10.2 2.1h4.1zM12 6.5L9.9 11.5h4.2L12 6.5z" />
+                  </svg>
+                )
+              },
+              {
+                name: "Dropbox",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="#0061ff">
+                    <path d="M6 2L1 5.3l5 3.3 5-3.3L6 2zm12 0l-5 3.3 5 3.3 5-3.3L18 2zM1 12l5 3.3 5-3.3-5-3.3-5 3.3zm17-3.3l-5 3.3 5 3.3 5-3.3-5-3.3zM6 16.3l6 4 6-4-6-4.1-6 4.1z" />
+                  </svg>
+                )
+              },
+              {
+                name: "Trend Micro",
+                svg: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2a10 10 0 1010 10" stroke="#d8232a" strokeWidth="2.5" />
+                    <path d="M12 6a6 6 0 106 6" stroke="#d8232a" strokeWidth="2" />
+                    <circle cx="12" cy="12" r="2" fill="#d8232a" />
+                  </svg>
+                )
+              }
+            ].map((logo, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col items-center justify-center p-4 w-full rounded-xl bg-[#0b0f19]/80 border border-white/5 hover:border-primary/45 hover:shadow-lg hover:shadow-primary/5 transition-all hover:bg-slate-900/50 group"
+              >
+                <div className="mb-2.5 group-hover:scale-110 transition-transform duration-300">
+                  {logo.svg}
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 tracking-wider text-center group-hover:text-white transition-colors">{logo.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- 3. ABOUT SKYEAGLE --- */}
+      <section id="about" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/10">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Story / Mission */}
+            <div className="lg:col-span-7 space-y-6">
+              <h2 className="text-xs uppercase tracking-widest text-primary font-bold">Who We Are</h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">About SkyEagle Technologies</h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Based in Bengaluru, SkyEagle Technologies provides enterprise-grade IT infrastructure, network design, structured cabling, cybersecurity, and cloud migration solutions.
               </p>
-              <div className="flex flex-wrap gap-4 pt-2">
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Under coordinator Saarika (+91 93534 27314), we deliver responsive maintenance services and certified corporate technology platforms to keep growing businesses scaling.
+              </p>
+              <div className="pt-2">
                 <Link
-                  href="/contact"
+                  href="/about"
                   className="btn-gradient px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
                 >
-                  Partner With Us
+                  Our Full Story
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
 
-            {/* Right Column: Grid of Logos */}
-            <div className="glass-card p-6 md:p-8 rounded-2xl border border-white/10 relative overflow-hidden bg-slate-950/40 backdrop-blur-md">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full filter blur-3xl pointer-events-none" />
-              
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 items-center justify-items-center opacity-90">
-                {[
-                  {
-                    name: "Google Cloud",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Microsoft 365",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 23 23">
-                        <rect x="0" y="0" width="10" height="10" fill="#f25022" />
-                        <rect x="12" y="0" width="10" height="10" fill="#7fba00" />
-                        <rect x="0" y="12" width="10" height="10" fill="#00a4ef" />
-                        <rect x="12" y="12" width="10" height="10" fill="#ffb900" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "AWS",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#ff9900" />
-                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Jio Fiber",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke="#0059c3" strokeWidth="2.5" fill="none" />
-                        <circle cx="12" cy="12" r="6" stroke="#00a8e8" strokeWidth="2" fill="none" />
-                        <circle cx="12" cy="12" r="2" fill="#0059c3" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Sophos",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#0055ff" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Cisco Systems",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#049fd9">
-                        <rect x="2" y="14" width="2" height="6" rx="0.5" />
-                        <rect x="6" y="8" width="2" height="12" rx="0.5" />
-                        <rect x="10" y="4" width="2" height="16" rx="0.5" />
-                        <rect x="14" y="4" width="2" height="16" rx="0.5" />
-                        <rect x="18" y="8" width="2" height="12" rx="0.5" />
-                        <rect x="22" y="14" width="2" height="6" rx="0.5" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Fortinet",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
-                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#c32026" strokeWidth="2.5" />
-                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#c32026" strokeWidth="2" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Zoho",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24">
-                        <rect x="2" y="2" width="8" height="8" rx="1" fill="#e53935" />
-                        <rect x="14" y="2" width="8" height="8" rx="1" fill="#1e88e5" />
-                        <rect x="2" y="14" width="8" height="8" rx="1" fill="#43a047" />
-                        <rect x="14" y="14" width="8" height="8" rx="1" fill="#fdd835" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Salesforce",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#00a1e0">
-                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Adobe",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#ff0000">
-                        <path d="M14.3 2.1l9.2 20.3h-5.4l-3-7.2H9.3l-3 7.2H1L10.2 2.1h4.1zM12 6.5L9.9 11.5h4.2L12 6.5z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Dropbox",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#0061ff">
-                        <path d="M6 2L1 5.3l5 3.3 5-3.3L6 2zm12 0l-5 3.3 5 3.3 5-3.3L18 2zM1 12l5 3.3 5-3.3-5-3.3-5 3.3zm17-3.3l-5 3.3 5 3.3 5-3.3-5-3.3zM6 16.3l6 4 6-4-6-4.1-6 4.1z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    name: "Trend Micro",
-                    svg: (
-                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2a10 10 0 1010 10" stroke="#d8232a" strokeWidth="2.5" />
-                        <path d="M12 6a6 6 0 106 6" stroke="#d8232a" strokeWidth="2" />
-                        <circle cx="12" cy="12" r="2" fill="#d8232a" />
-                      </svg>
-                    )
-                  }
-                ].map((logo, idx) => (
-                  <div
-                    key={idx}
-                    className="flex flex-col items-center justify-center p-3 w-full rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all hover:bg-slate-900/50 group"
-                  >
-                    <div className="mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {logo.svg}
-                    </div>
-                    <span className="text-[9px] font-bold text-slate-400 tracking-wider text-center group-hover:text-white transition-colors">{logo.name}</span>
-                  </div>
-                ))}
-              </div>
+            {/* Statistics Dashboard */}
+            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+              {[
+                { count: "120+", label: "Projects Completed" },
+                { count: "80+", label: "Businesses Supported" },
+                { count: "24/7", label: "Service Desk Hours" },
+                { count: "6-Mo", label: "Hardware Warranty" },
+              ].map((stat, idx) => (
+                <div key={idx} className="glass-card p-6 rounded-2xl border border-white/5 text-center bg-slate-950/40">
+                  <div className="text-2xl md:text-3xl font-black text-white bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-1.5">{stat.count}</div>
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-slate-500">{stat.label}</div>
+                </div>
+              ))}
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* --- SERVICES SECTION --- */}
-      <section className="section-padding relative z-10 px-6">
+      {/* --- 4. WHY CHOOSE SKYEAGLE --- */}
+      <section id="why-choose-us" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Enterprise Solutions</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Premier Services</h3>
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Our Strengths</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Why Businesses Trust Us</h3>
             <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
-              From proactive cyber defenses to unified cloud configurations, we deploy robust solutions matching your corporate scale.
+              We act as your dedicated IT department, delivering certified support workflows, genuine hardware components, and enterprise protection.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feat, idx) => {
+              const Icon = feat.icon;
+              return (
+                <div key={idx} className="glass-card p-6 rounded-xl border border-white/5 hover:border-primary/25 transition-all">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20 mb-5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-bold text-white text-sm mb-2">{feat.title}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">{feat.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* --- 5. CORE SERVICES PREVIEW --- */}
+      <section id="services" className="section-padding relative z-10 px-6 border-b border-white/5">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Solutions</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Core Services Directory</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              From structured cabling infrastructure to unified cloud administration, we support 18 core services.
             </p>
           </div>
 
@@ -524,17 +568,25 @@ export default function Home() {
                     <h4 className="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors">
                       {service.title}
                     </h4>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                    <p className="text-xs text-slate-400 leading-relaxed mb-6">
                       {service.description}
                     </p>
                   </div>
-                  <Link
-                    href="/services"
-                    className="text-xs font-semibold text-primary hover:text-white flex items-center gap-1 group-hover:gap-2 transition-all mt-auto"
-                  >
-                    Details
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                    <Link
+                      href="/services"
+                      className="text-xs font-semibold text-primary hover:text-white flex items-center gap-1 group-hover:gap-2 transition-all"
+                    >
+                      Learn More
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(service.title)}`}
+                      className="text-[10px] text-slate-500 font-bold uppercase tracking-wider hover:text-white"
+                    >
+                      Get Quote
+                    </Link>
+                  </div>
                 </div>
               );
             })}
@@ -552,169 +604,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- BESPOKE SOLUTIONS / SYNC ACROSS DEVICES SECTION --- */}
-      <section className="section-padding relative z-10 px-6 border-t border-b border-white/5 bg-[#030611]/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Our Bespoke Solutions</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Sync Across All Devices</h3>
-            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
-              Everything you need to make your business grow super fast! Our unified architectures adapt dynamically to desktop, laptop, mobile, and field hardware.
-            </p>
-          </div>
+      {/* Services Section CTA Banner */}
+      <div className="bg-primary/10 border-y border-primary/20 py-8 px-6 text-center relative z-10">
+        <h4 className="font-bold text-white text-base mb-2">Need Expert IT Infrastructure Support?</h4>
+        <p className="text-xs text-slate-400 mb-4">Request a free site assessment audit from our certified engineers.</p>
+        <Link href="/contact" className="btn-gradient px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2">
+          Get Free Consultation
+        </Link>
+      </div>
 
-          {/* Interactive Navigation Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12 max-w-xl mx-auto">
-            {bespokeTabs.map((tab, idx) => (
-              <button
-                key={idx}
-                onClick={() => setSelectedBespokeTab(idx)}
-                className={`px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all focus:outline-none cursor-pointer ${
-                  selectedBespokeTab === idx
-                    ? "bg-primary text-white"
-                    : "text-slate-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Tab Showcase split */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left: Code Viewer Mockup (7 cols) */}
-            <div className="lg:col-span-7 w-full">
-              <div className="relative rounded-xl overflow-hidden border border-white/10 bg-[#02040b] shadow-2xl">
-                {/* Header bar */}
-                <div className="bg-[#080d19] px-4 py-3 border-b border-white/5 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-rose-500/80 block" />
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80 block" />
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 block" />
-                  </div>
-                  <span className="text-[10px] sm:text-xs text-slate-400 font-mono tracking-wide bg-[#0d1527] px-3 py-1 rounded border border-white/5">
-                    {bespokeTabs[selectedBespokeTab].fileName}
-                  </span>
-                  <div className="w-12" /> {/* spacer */}
-                </div>
-
-                {/* Code Body */}
-                <div className="p-5 overflow-x-auto text-[11px] sm:text-xs font-mono leading-relaxed text-slate-300 max-h-[300px]">
-                  <pre className="whitespace-pre">
-                    {bespokeTabs[selectedBespokeTab].code}
-                  </pre>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Text details (5 cols) */}
-            <div className="lg:col-span-5 space-y-6">
-              <h4 className="text-xl md:text-2xl font-bold text-white tracking-tight">
-                {bespokeTabs[selectedBespokeTab].title}
-              </h4>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                {bespokeTabs[selectedBespokeTab].desc}
-              </p>
-              <div className="h-px bg-white/5 my-2" />
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/contact"
-                  className="btn-gradient px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 cursor-pointer"
-                >
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/services"
-                  className="text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
-                >
-                  View Services
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- HOMEPAGE DATA RECOVERY PREVIEW --- */}
-      <section className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/20">
+      {/* --- 6. DATA RECOVERY PREVIEW --- */}
+      <section id="data-recovery" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/20">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side: content */}
+            {/* Content preview */}
             <div className="space-y-6">
-              <h2 className="text-xs uppercase tracking-widest text-primary font-bold">Secure Labs</h2>
+              <h2 className="text-xs uppercase tracking-widest text-primary font-bold">Secure Data Protection</h2>
               <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Professional Data Recovery Services
+                Data Recovery Services
               </h3>
               <p className="text-sm text-slate-400 leading-relaxed">
-                Lost vital database files, accounting documents, or business assets? We extract files from mechanical clicks mechanical drives, raw partition SSDs, and crashed enterprise RAID controller arrays.
+                Lost vital database folders, accounting documents, or business assets? We extract files from mechanical clicks mechanical drives, raw partition SSDs, and crashed enterprise RAID controller arrays.
               </p>
-              <ul className="grid grid-cols-2 gap-3.5 text-xs text-slate-300">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> Hard Disk Drives (HDD)
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> SSD & NVMe Modules
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> RAID & NAS Servers
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> Encrypted Volumes
-                </li>
-              </ul>
+              <div className="grid grid-cols-2 gap-3 text-xs text-slate-300">
+                <div className="flex items-center gap-2">✔ Hard Disk Drives (HDD)</div>
+                <div className="flex items-center gap-2">✔ Solid State Drives (SSD)</div>
+                <div className="flex items-center gap-2">✔ RAID & NAS Servers</div>
+                <div className="flex items-center gap-2">✔ USB Flash & SD Cards</div>
+              </div>
               <div className="pt-2">
                 <Link
                   href="/data-recovery"
                   className="btn-gradient px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
                 >
-                  Explore Recovery Services
+                  Full Recovery Details
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
 
-            {/* Right side: visual mock */}
-            <div className="glass-card p-8 rounded-2xl border border-white/10 relative overflow-hidden bg-slate-950/40">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full filter blur-xl animate-pulse" />
-              <h4 className="font-bold text-xs uppercase tracking-wider text-slate-300 mb-4 border-b border-white/5 pb-2">Diagnostic Scan Log</h4>
-              <div className="font-mono text-[11px] text-slate-400 space-y-2 leading-relaxed">
-                <div>[SYSTEM] Initializing physical drive scan...</div>
-                <div className="text-emerald-400">[SUCCESS] Controller board communication active.</div>
-                <div>[STATUS] Mechanical head status: <span className="text-amber-400">Degraded (Sector Errors)</span></div>
-                <div>[ACTION] Cloning block sectors securely...</div>
-                <div className="text-emerald-400">[EXTRACT] 1,480 database files recovered.</div>
+            {/* Diagnostic card */}
+            <div className="glass-card p-6 md:p-8 rounded-2xl border border-white/5 bg-slate-950/40 relative overflow-hidden">
+              <h4 className="font-bold text-xs uppercase tracking-wider text-slate-300 mb-4 border-b border-white/5 pb-2">Forensic Scan Log</h4>
+              <div className="font-mono text-[10px] sm:text-[11px] text-slate-400 space-y-2 leading-relaxed">
+                <div>[SYSTEM] Reading disk sectors...</div>
+                <div className="text-emerald-400">[SUCCESS] Controller layer identified.</div>
+                <div>[STATUS] Mechanical head status: <span className="text-rose-500">Physical Degradation</span></div>
+                <div>[ACTION] Cloning memory chips in clean lab...</div>
+                <div className="text-emerald-400">[EXTRACT] 1,480 SQL records parsed successfully.</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- HOMEPAGE REFURBISHED PRODUCTS PREVIEW --- */}
-      <section className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/10">
+      {/* Data Recovery Section CTA Banner */}
+      <div className="bg-rose-950/20 border-b border-rose-500/20 py-8 px-6 text-center relative z-10">
+        <h4 className="font-bold text-rose-200 text-base mb-2">Lost Important Corporate Data?</h4>
+        <p className="text-xs text-rose-400/90 mb-4">Disconnect the hard disk immediately and speak to our labs diagnostics coordinator.</p>
+        <a href="tel:+919353427314" className="bg-rose-600 hover:bg-rose-700 text-white font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider inline-flex items-center gap-2 transition-colors">
+          Contact Specialists Now
+        </a>
+      </div>
+
+      {/* --- 7. REFURBISHED PRODUCTS PREVIEW --- */}
+      <section id="refurbished-products" className="section-padding relative z-10 px-6 border-b border-white/5">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Enterprise Hardware</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Refurbished IT Hardware Catalog</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Refurbished IT Assets</h3>
             <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
-              Get certified, business-grade laptops and desktops from top corporate fleets at a fraction of retail prices, backed by a 6-month support warranty.
+              Get certified, business-grade laptops and desktops from top corporate fleets at a fraction of retail prices.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {[
-              { name: "Dell Latitude 7490", specs: "i5 8th Gen | 16GB RAM | 256GB SSD", price: "INR 18,500 approx." },
-              { name: "Lenovo ThinkPad T480s", specs: "i7 8th Gen | 16GB RAM | 512GB SSD", price: "INR 22,000 approx." },
-              { name: "HP EliteBook 840 G5", specs: "i5 8th Gen | 16GB RAM | 512GB SSD", price: "INR 19,800 approx." },
+              { name: "Dell Latitude 7490", specs: "Intel Core i5 | 16GB RAM | 256GB SSD", warranty: "6-Mo Warranty" },
+              { name: "Lenovo ThinkPad T480s", specs: "Intel Core i7 | 16GB RAM | 512GB SSD", warranty: "6-Mo Warranty" },
+              { name: "HP EliteBook 840 G5", specs: "Intel Core i5 | 16GB RAM | 512GB SSD", warranty: "6-Mo Warranty" },
             ].map((p, idx) => (
-              <div key={idx} className="glass-card p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-primary/20 transition-all">
+              <div key={idx} className="glass-card p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-primary/20 transition-all bg-slate-950/20">
                 <div>
-                  <h4 className="font-bold text-white text-sm mb-1">{p.name}</h4>
-                  <p className="text-[11px] text-slate-400 mb-4">{p.specs}</p>
+                  <span className="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded uppercase tracking-wider">{p.warranty}</span>
+                  <h4 className="font-bold text-white text-base mb-1.5 mt-3">{p.name}</h4>
+                  <p className="text-xs text-slate-400 mb-6 leading-relaxed">{p.specs}</p>
                 </div>
-                <div className="flex items-center justify-between text-xs pt-4 border-t border-white/5">
-                  <span className="text-slate-500">{p.price}</span>
-                  <span className="text-emerald-400 font-semibold">Grade A++</span>
+                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                  <span className="text-[10px] text-slate-500 font-semibold uppercase">Tested & Certified</span>
+                  <Link
+                    href={`/contact?service=Hardware%20Purchase&product=${encodeURIComponent(p.name)}`}
+                    className="text-xs font-bold text-primary hover:text-white"
+                  >
+                    Request Quote
+                  </Link>
                 </div>
               </div>
             ))}
@@ -725,49 +708,47 @@ export default function Home() {
               href="/refurbished-products"
               className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2"
             >
-              View Refurbished Inventory
+              Browse Products Catalog
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* --- HOMEPAGE BRANDS SUPPORTED STRIP --- */}
-      <section className="py-10 relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-6">
-            <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Supported Technologies & OEM Brands</p>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-40 grayscale hover:opacity-75 transition-opacity">
-            {["Microsoft", "Cisco", "Fortinet", "Sophos", "Dell", "HP", "Lenovo", "Apple", "VMware", "AWS", "Google Cloud", "Intel", "AMD"].map((brand, idx) => (
-              <span key={idx} className="text-xs sm:text-sm font-black tracking-wider text-slate-400">{brand}</span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Refurbished Section CTA Banner */}
+      <div className="bg-slate-900/40 border-y border-white/5 py-8 px-6 text-center relative z-10">
+        <h4 className="font-bold text-white text-base mb-2">Looking for Bulk Office Procurement?</h4>
+        <p className="text-xs text-slate-400 mb-4">We offer deep discounts for commercial orders, complete with customization parameters.</p>
+        <Link href="/contact" className="btn-gradient px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2">
+          Request Bulk Hardware Quote
+        </Link>
+      </div>
 
-      {/* --- WHY CHOOSE US SECTION --- */}
-      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/50">
+      {/* --- 8. SOLUTIONS BY INDUSTRY --- */}
+      <section id="industries" className="section-padding relative z-10 px-6 border-b border-white/5">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Our Core Assets</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Why Choose SkyEagle Technologies</h3>
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Industries</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Solutions by Industry</h3>
             <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
-              We focus on delivering high-reliability systems and certified technical expertise, acting as your extended IT department.
+              We design specialized setups configured explicitly to fit your industry sector regulations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feat, idx) => {
-              const Icon = feat.icon;
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {industries.map((ind, idx) => {
+              const Icon = ind.icon;
               return (
-                <div key={idx} className="glass-card p-6 rounded-xl flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 border border-primary/20">
+                <div
+                  key={idx}
+                  className="glass-card p-6 rounded-2xl border border-white/5 hover:border-primary/20 transition-all hover:bg-slate-900/30 flex gap-4"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-base mb-1.5">{feat.title}</h4>
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">{feat.desc}</p>
+                    <h4 className="font-bold text-white text-sm mb-1.5">{ind.name}</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">{ind.example}</p>
                   </div>
                 </div>
               );
@@ -776,18 +757,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FEATURED ENGAGEMENTS SECTION --- */}
-      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/30">
+      {/* --- 9. FEATURED PROJECTS PREVIEW --- */}
+      <section id="portfolio" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/20">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Our Work</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight animate-fade-in">Featured Engagements</h3>
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Case Studies</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Featured Engagements</h3>
             <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
               Take a look at how we deploy physical networking hardware, execute cloud migrations, and implement automation protocols.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[
               {
                 category: "Cloud",
@@ -813,10 +794,9 @@ export default function Home() {
             ].map((engagement, idx) => (
               <div
                 key={idx}
-                className="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 flex flex-col justify-between group"
+                className="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 flex flex-col justify-between group bg-slate-950/20"
               >
                 <div>
-                  {/* Image container */}
                   <div className="relative h-48 w-full overflow-hidden bg-slate-950">
                     <Image
                       src={engagement.image}
@@ -828,8 +808,6 @@ export default function Home() {
                       {engagement.category}
                     </span>
                   </div>
-
-                  {/* Content */}
                   <div className="p-6">
                     <h4 className="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">
                       {engagement.title}
@@ -839,8 +817,6 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-
-                {/* Tags */}
                 <div className="px-6 pb-6 pt-2 flex flex-wrap gap-2">
                   {engagement.tags.map((tag, tIdx) => (
                     <span
@@ -854,73 +830,100 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* --- INDUSTRIES SECTION --- */}
-      <section className="section-padding relative z-10 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Sectors We Empower</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Custom Configurations by Industry</h3>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {[
-              "Corporate",
-              "Education",
-              "Healthcare",
-              "Retail",
-              "Manufacturing",
-              "Startups",
-              "Government",
-            ].map((ind, idx) => (
-              <div
-                key={idx}
-                className="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center border border-white/5 hover:border-primary/30 transition-all hover:bg-slate-900/50"
-              >
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold mb-3 border border-primary/20">
-                  0{idx + 1}
-                </div>
-                <span className="text-xs sm:text-sm font-semibold text-slate-200">{ind}</span>
-              </div>
-            ))}
+          <div className="text-center">
+            <Link
+              href="/portfolio"
+              className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2"
+            >
+              Explore Projects Cases
+              <ExternalLink className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* --- THE TIMELINE / PROCESS --- */}
-      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/50">
+      {/* --- 10. OUR PROCESS --- */}
+      <section id="process" className="section-padding relative z-10 px-6 border-b border-white/5">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">How We Engage</h2>
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Workflow</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Structured Process</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              We follow a strict 6-step project delivery loop to ensure uptime stability and security validation.
+            </p>
           </div>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Connecting lines for desktop */}
-            <div className="hidden md:block absolute top-[30px] left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-primary via-accent to-secondary opacity-30 z-0" />
-
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
             {[
-              { step: "01", name: "Consultation", desc: "We review your active IT endpoints, security rules, and structural gaps." },
-              { step: "02", name: "Planning", desc: "Detailed proposal mapping hardware specs, firewall rules, and backup timelines." },
-              { step: "03", name: "Implementation", desc: "Staging, deploying components, training personnel, and system validation." },
-              { step: "04", name: "Support", desc: "Continuous 24x7 monitoring, ticketing, and preventive onsite checkups." },
+              { step: "01", name: "Consultation", desc: "Detail office endpoints & cabling requirements." },
+              { step: "02", name: "Assessment", desc: "Map network structure gaps & security endpoints." },
+              { step: "03", name: "Proposal", desc: "Share custom budget options & OEM spec sheets." },
+              { step: "04", name: "Deployment", desc: "Certified installation of switches, servers & firewalls." },
+              { step: "05", name: "Testing", desc: "Rigorous diagnostic sweeps & backup failover checks." },
+              { step: "06", name: "Support", desc: "24x7 priority maintenance sweeps & remote helpdesk." },
             ].map((p, idx) => (
               <div key={idx} className="relative text-center z-10 flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full bg-slate-950 border border-primary/30 flex items-center justify-center text-primary font-extrabold text-sm mb-5 shadow-lg shadow-primary/5">
+                <div className="w-12 h-12 rounded-full bg-slate-950 border border-primary/30 flex items-center justify-center text-primary font-extrabold text-xs mb-4 shadow-lg shadow-primary/5">
                   {p.step}
                 </div>
-                <h4 className="text-base font-bold text-white mb-2">{p.name}</h4>
-                <p className="text-xs text-slate-400 leading-relaxed max-w-[200px]">{p.desc}</p>
+                <h4 className="text-xs font-bold text-white mb-2 uppercase tracking-wider">{p.name}</h4>
+                <p className="text-[10px] text-slate-400 leading-relaxed max-w-[150px] mx-auto">{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- PLANS / PRICING SECTION --- */}
-      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/30">
+      {/* --- 11. TESTIMONIALS --- */}
+      <section id="testimonials" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Feedback</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">What Our Clients Say</h3>
+          </div>
+
+          <div className="relative min-h-[200px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTestimonial}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.5 }}
+                className="glass-card p-6 md:p-8 rounded-2xl border border-white/5 text-center bg-slate-950/40"
+              >
+                <p className="text-sm sm:text-base italic text-slate-200 leading-relaxed mb-6">
+                  &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
+                </p>
+                <h4 className="font-bold text-white text-sm">
+                  {testimonials[activeTestimonial].author}
+                </h4>
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">
+                  {testimonials[activeTestimonial].role}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Testimonials Dots */}
+            <div className="flex items-center justify-center gap-2.5 mt-8">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveTestimonial(idx)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all focus:outline-none cursor-pointer ${
+                    activeTestimonial === idx ? "bg-primary w-6" : "bg-white/20 hover:bg-white/40"
+                  }`}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 12. PRICING --- */}
+      <section id="pricing" className="section-padding relative z-10 px-6 border-b border-white/5">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Plans</h2>
@@ -1026,58 +1029,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- TESTIMONIALS SECTION --- */}
-      <section className="section-padding relative z-10 px-6">
+      {/* --- 13. FAQ --- */}
+      <section id="faq" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Success Stories</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">What Our Clients Say</h3>
-          </div>
-
-          <div className="relative min-h-[220px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.5 }}
-                className="glass-card p-8 rounded-2xl border border-white/10 text-center"
-              >
-                <p className="text-base sm:text-lg italic text-slate-200 leading-relaxed mb-6">
-                  &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
-                </p>
-                <h4 className="font-bold text-white text-base">
-                  {testimonials[activeTestimonial].author}
-                </h4>
-                <p className="text-xs text-slate-400 uppercase tracking-widest mt-1">
-                  {testimonials[activeTestimonial].role}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Slider Dots */}
-            <div className="flex justify-center items-center gap-2.5 mt-8">
-              {testimonials.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveTestimonial(idx)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all focus:outline-none ${
-                    activeTestimonial === idx ? "bg-primary w-6" : "bg-slate-600"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- FAQ SECTION --- */}
-      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/50">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Answers & Support</h2>
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">FAQ</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Frequently Asked Questions</h3>
           </div>
 
@@ -1085,64 +1041,168 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CONTACT & MAP SECTION --- */}
-      <section className="section-padding relative z-10 px-6">
+      {/* --- 14. LATEST BLOGS PREVIEW --- */}
+      <section id="blog" className="section-padding relative z-10 px-6 border-b border-white/5">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-            {/* Details and Map */}
-            <div className="flex flex-col justify-between gap-8">
-              <div>
-                <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Connect Instantly</h2>
-                <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">Let&apos;s Secure &amp; Scale Your Node</h3>
-                <p className="text-sm md:text-base text-slate-400 leading-relaxed mb-8">
-                  Get custom hardware quotes, establish reliable AMC support, or request urgent network deployments. Our representative Saarika is online.
-                </p>
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Knowledge Base</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Latest Articles & Guides</h3>
+          </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-primary shrink-0 border border-white/10">
-                      <Phone className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-500 uppercase tracking-widest">Call Directly</div>
-                      <a href="tel:+919353427314" className="text-sm text-slate-300 font-semibold hover:text-primary transition-colors">
-                        +91 93534 27314
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-primary shrink-0 border border-white/10">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-500 uppercase tracking-widest">Email Support</div>
-                      <a href="mailto:sales@skyeagletechno.com" className="text-sm text-slate-300 font-semibold hover:text-primary transition-colors break-all">
-                        sales@skyeagletechno.com
-                      </a>
-                    </div>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {[
+              {
+                category: "Cloud Security",
+                title: "Microsoft 365 Security Settings Checklist for Office Administrators",
+                desc: "A hands-on guide to securing your M365 tenant: enabling MFA, configuring SPF/DKIM validation records, and disabling legacy protocols.",
+              },
+              {
+                category: "Network Defense",
+                title: "Why Next-Gen Firewalls Are Essential for Small Business Networks",
+                desc: "Unlike standard routers, next-gen firewalls perform Deep Packet Inspection to detect malware payloads, block suspicious ports, and secure remote VPN terminals.",
+              },
+            ].map((art, idx) => (
+              <div key={idx} className="glass-card p-6 rounded-2xl border border-white/5 flex flex-col justify-between bg-slate-950/20">
+                <div>
+                  <span className="text-[9px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full uppercase tracking-wider">{art.category}</span>
+                  <h4 className="font-bold text-white text-base mb-2 mt-4">{art.title}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-6">{art.desc}</p>
                 </div>
+                <Link
+                  href="/blog"
+                  className="text-xs font-bold text-primary hover:text-white flex items-center gap-1 mt-auto"
+                >
+                  Read Full Guide <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
+            ))}
+          </div>
 
-              {/* Map Iframe */}
-              <div className="w-full h-[250px] sm:h-[300px] rounded-xl overflow-hidden border border-white/10 relative">
-                <iframe
-                  title="SkyEagle Location Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.373465819777!2d77.56846187593256!3d12.883713087423588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1565576d337d%3A0xe54d2dc8c8d8d3f1!2sSrinidhi%20Layout%2C%20Konanakunte%2C%20Bengaluru%2C%20Karnataka%20560062!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)" }}
-                  allowFullScreen
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* Form */}
-            <ContactForm />
+          <div className="text-center">
+            <Link
+              href="/blog"
+              className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2"
+            >
+              Read All Articles
+              <ExternalLink className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* --- 15. CAREERS PREVIEW --- */}
+      <section id="careers" className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Join Us</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Active Opportunities</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              Work with certified engineers, deploy high-end network topologies, and gain hands-on systems training.
+            </p>
+          </div>
+
+          <div className="glass-card p-6 md:p-8 rounded-2xl border border-white/5 bg-slate-950/20 max-w-3xl mx-auto text-center space-y-6">
+            <h4 className="font-bold text-white text-lg">We are hiring IT Engineers & Remote System Admins!</h4>
+            <p className="text-xs text-slate-400 leading-relaxed max-w-lg mx-auto">
+              If you have 1-3 years of experience in structured cabling routing, firewall configurations, or Active Directory management, apply today.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Link
+                href="/careers"
+                className="btn-gradient px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
+              >
+                View Opportunities
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 16. CONTACT SECTION --- */}
+      <section id="contact" className="section-padding relative z-10 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Connect</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Start Your Project</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              Fill out the form below or contact our primary coordinator Saarika directly to schedule your site assessment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Contact Details & Info */}
+            <div className="lg:col-span-5 space-y-8">
+              <div className="glass-card p-6 rounded-2xl border border-white/5 bg-slate-950/40 space-y-6">
+                
+                {/* Location */}
+                <div className="flex items-start gap-4">
+                  <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Office Address</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Srinidhi Layout, Konanakunte,<br />
+                      Bengaluru, Karnataka - 560062, India
+                    </p>
+                    <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider mt-1.5">
+                      Service Areas: Bengaluru, Mysuru, Mangaluru, Hubballi, Karnataka
+                    </p>
+                  </div>
+                </div>
+
+                {/* Direct Line */}
+                <div className="flex items-center gap-4">
+                  <Phone className="w-5 h-5 text-primary shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Call Coordinator</h4>
+                    <a href="tel:+919353427314" className="text-xs text-slate-400 hover:text-white transition-colors">
+                      +91 93534 27314
+                    </a>
+                    <span className="block text-[9px] text-slate-500 font-medium">Hours: 24/7 Support Desk</span>
+                  </div>
+                </div>
+
+                {/* Email Address */}
+                <div className="flex items-center gap-4">
+                  <Mail className="w-5 h-5 text-primary shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Email Coordinates</h4>
+                    <a href="mailto:sales@skyeagletechno.com" className="text-xs text-slate-400 hover:text-white transition-colors">
+                      sales@skyeagletechno.com
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Embedded Interactive Map */}
+              <div className="h-64 rounded-2xl overflow-hidden border border-white/10 relative">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15557.733519965022!2d77.5585!3d12.8837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15be212c4ab1%3A0xe212c6a0c0000000!2sKonanakunte%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1722335123456!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="SkyEagle Technologies Google Maps Coordinates"
+                ></iframe>
+              </div>
+            </div>
+
+            {/* Direct Form Submission */}
+            <div className="lg:col-span-7">
+              <div className="glass-card p-6 md:p-8 rounded-2xl border border-white/5 bg-slate-950/40">
+                <h4 className="font-bold text-white text-sm mb-6 border-b border-white/5 pb-2">Send Message</h4>
+                <ContactForm />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

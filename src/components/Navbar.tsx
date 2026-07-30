@@ -7,15 +7,15 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Data Recovery", href: "/data-recovery" },
-  { name: "Refurbished Products", href: "/refurbished-products" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Blog", href: "/blog" },
-  { name: "Careers", href: "/careers" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Services", href: "/#services" },
+  { name: "Data Recovery", href: "/#data-recovery" },
+  { name: "Refurbished Products", href: "/#refurbished-products" },
+  { name: "Portfolio", href: "/#portfolio" },
+  { name: "Blog", href: "/#blog" },
+  { name: "Careers", href: "/#careers" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -32,6 +32,27 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === "/" && href.includes("#")) {
+      e.preventDefault();
+      const id = href.split("#")[1];
+      const element = document.getElementById(id);
+      if (element) {
+        // Adjust for sticky header height
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <header
@@ -65,14 +86,16 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <nav className="hidden xl:flex items-center gap-5">
           {navLinks.map((link) => {
+            const cleanHref = link.href.replace("/#", "/");
             const isActive =
-              link.href === "/"
+              link.href === "/#home"
                 ? pathname === "/"
-                : pathname.startsWith(link.href);
+                : pathname === cleanHref || pathname.startsWith(cleanHref);
             return (
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={`text-[13px] font-medium relative py-1 transition-colors hover:text-white ${
                   isActive ? "text-white font-semibold" : "text-slate-400"
                 }`}
@@ -90,25 +113,26 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden xl:block">
+        {/* Actions container */}
+        <div className="flex items-center gap-4">
+          {/* Always visible "Get Quote" button */}
           <Link
             href="/contact"
-            className="btn-gradient px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide uppercase inline-flex items-center gap-1.5"
+            className="btn-gradient px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide uppercase inline-flex items-center gap-1.5 shadow-lg shadow-primary/10"
           >
             Get Quote
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </Link>
-        </div>
 
-        {/* Mobile menu toggle */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 xl:hidden text-slate-300 hover:text-white transition-colors focus:outline-none"
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+          {/* Mobile menu toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 xl:hidden text-slate-300 hover:text-white transition-colors focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Panel */}
@@ -122,15 +146,16 @@ export default function Navbar() {
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => {
+                const cleanHref = link.href.replace("/#", "/");
                 const isActive =
-                  link.href === "/"
+                  link.href === "/#home"
                     ? pathname === "/"
-                    : pathname.startsWith(link.href);
+                    : pathname === cleanHref || pathname.startsWith(cleanHref);
                 return (
                   <Link
                     key={link.name}
                     href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className={`text-base font-medium py-1 transition-colors ${
                       isActive ? "text-primary font-semibold" : "text-slate-300 hover:text-white"
                     }`}
@@ -139,15 +164,6 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <div className="h-px bg-white/5 my-2" />
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="btn-gradient w-full py-3 rounded-full text-sm font-semibold tracking-wide uppercase text-center inline-flex items-center justify-center gap-2"
-              >
-                Get Quote
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
             </div>
           </motion.div>
         )}
