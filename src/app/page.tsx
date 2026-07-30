@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ShieldCheck,
@@ -771,6 +772,87 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- FEATURED ENGAGEMENTS SECTION --- */}
+      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Our Work</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight animate-fade-in">Featured Engagements</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              Take a look at how we deploy physical networking hardware, execute cloud migrations, and implement automation protocols.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                category: "Cloud",
+                title: "Microsoft 365 Enterprise Migration",
+                desc: "Migrated 150+ user profiles from legacy IMAP email environments onto secure Microsoft 365 configurations with OneDrive document mapping.",
+                image: "/images/cloud_migration.jpg",
+                tags: ["M365", "Migration", "Security"],
+              },
+              {
+                category: "Network",
+                title: "High-Density Office Network Setup",
+                desc: "Engineered multi-zone corporate Wi-Fi layout utilizing Cisco hardware, custom VLAN isolation, and structured server cabling routing.",
+                image: "/images/network_setup.jpg",
+                tags: ["Networking", "Wi-Fi", "Cisco"],
+              },
+              {
+                category: "Rentals",
+                title: "Corporate Event Laptop Provisioning",
+                desc: "Delivered, configured, and supported 80 high-end rental workstations for a major corporate conference under strict setup windows.",
+                image: "/images/laptop_rentals.jpg",
+                tags: ["Rentals", "Workstations", "Onsite Support"],
+              },
+            ].map((engagement, idx) => (
+              <div
+                key={idx}
+                className="glass-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  {/* Image container */}
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-950">
+                    <Image
+                      src={engagement.image}
+                      alt={engagement.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-wider bg-primary/95 text-white px-2.5 py-1 rounded-md">
+                      {engagement.category}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h4 className="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                      {engagement.title}
+                    </h4>
+                    <p className="text-xs text-slate-400 leading-relaxed min-h-[60px]">
+                      {engagement.desc}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tags */}
+                <div className="px-6 pb-6 pt-2 flex flex-wrap gap-2">
+                  {engagement.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[9px] font-semibold text-slate-400 bg-white/5 border border-white/5 px-2.5 py-0.5 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* --- INDUSTRIES SECTION --- */}
       <section className="section-padding relative z-10 px-6">
         <div className="container mx-auto max-w-6xl">
@@ -827,6 +909,113 @@ export default function Home() {
                 </div>
                 <h4 className="text-base font-bold text-white mb-2">{p.name}</h4>
                 <p className="text-xs text-slate-400 leading-relaxed max-w-[200px]">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- PLANS / PRICING SECTION --- */}
+      <section className="section-padding relative z-10 px-6 border-t border-white/5 bg-[#030611]/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Plans</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Transparent Starting Prices</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              Flexible IT agreements without hidden costs. Get premium assets and remote assistance when you need it.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Laptop Rentals",
+                desc: "Flexible leases for startups and temporary teams.",
+                price: "₹999",
+                unit: "/ day",
+                features: ["Core i5 / i7 setups", "16GB RAM / SSD", "Immediate replacement"],
+                cta: "Request Rental",
+                link: "/contact?service=Hardware%20Rentals",
+                featured: false,
+              },
+              {
+                title: "Printer Rentals",
+                desc: "High-speed laser printing for office paperwork.",
+                price: "₹1,499",
+                unit: "/ month",
+                features: ["Laser MFP Printer", "Toner support included", "Network print capabilities"],
+                cta: "Request Rental",
+                link: "/contact?service=Hardware%20Rentals",
+                featured: false,
+              },
+              {
+                title: "IT AMC Services",
+                desc: "Complete lifecycle maintenance for networks & PCs.",
+                price: "₹4,999",
+                unit: "/ month",
+                features: ["Preventive checks", "Remote & Onsite Support", "Network firewall policy"],
+                cta: "Sign Agreement",
+                link: "/contact?service=AMC%20Services",
+                featured: true,
+              },
+              {
+                title: "Website Design",
+                desc: "Modern glassmorphic landing pages for businesses.",
+                price: "₹14,999",
+                unit: "/ once",
+                features: ["Custom UI Design", "SSL Certificate Setup", "Cloudflare CDN setup"],
+                cta: "Order Website",
+                link: "/contact?service=Website%20Design",
+                featured: false,
+              },
+            ].map((plan, idx) => (
+              <div
+                key={idx}
+                className={`glass-card rounded-2xl p-6 border flex flex-col justify-between relative transition-all duration-300 ${
+                  plan.featured
+                    ? "border-primary bg-slate-900/60 shadow-lg shadow-primary/10 ring-2 ring-primary/20 scale-[1.02] md:scale-105 z-10"
+                    : "border-white/5 bg-slate-950/40 hover:border-primary/20"
+                }`}
+              >
+                {plan.featured && (
+                  <div className="absolute -top-3 right-6 bg-primary text-white text-[9px] font-black tracking-widest uppercase py-1 px-3 rounded-full shadow">
+                    Corporate Choice
+                  </div>
+                )}
+
+                <div>
+                  <h4 className="text-base font-bold text-white mb-2">{plan.title}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-6 min-h-[36px]">{plan.desc}</p>
+                  
+                  <div className="flex items-baseline gap-1 mb-6">
+                    <span className="text-3xl font-black text-white">{plan.price}</span>
+                    <span className="text-xs text-slate-500 font-medium">{plan.unit}</span>
+                  </div>
+
+                  <div className="h-px bg-white/5 my-4" />
+                  
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="flex items-center gap-2.5 text-xs text-slate-300">
+                        <svg className="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Link
+                  href={plan.link}
+                  className={`w-full py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider text-center cursor-pointer transition-all ${
+                    plan.featured
+                      ? "bg-primary text-white hover:bg-primary-dark shadow"
+                      : "bg-white/5 border border-white/10 hover:bg-white/10 text-white"
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
               </div>
             ))}
           </div>
