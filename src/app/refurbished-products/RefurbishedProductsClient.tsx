@@ -158,6 +158,36 @@ const products = [
     warranty: "Maintenance Included",
     price: "Contact for Rates",
   },
+  {
+    id: 16,
+    name: "Brother HL-L2321D Laser Printer",
+    category: "printers",
+    brand: "Brother",
+    specs: "Monochrome Laser | Auto Duplex | 30 ppm | USB | Compact Desktop Design",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
+  {
+    id: 17,
+    name: "Brother MFC-L2715DW Laser MFP",
+    category: "printers",
+    brand: "Brother",
+    specs: "Monochrome Laser MFP | Print, Scan, Copy, Fax | Wi-Fi | Auto Duplex | 34 ppm",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
+  {
+    id: 18,
+    name: "Brother DCP-L3551CDW Color MFP",
+    category: "printers",
+    brand: "Brother",
+    specs: "Color Laser MFP | Print, Scan, Copy | Wi-Fi | Auto Duplex | 22 ppm | Touchscreen",
+    condition: "Office Ready",
+    warranty: "Maintenance Included",
+    price: "Contact for Rates",
+  },
 ];
 
 const categories = [
