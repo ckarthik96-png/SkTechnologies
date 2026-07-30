@@ -364,87 +364,91 @@ export default function Home() {
             <div className="glass-card p-6 md:p-8 rounded-2xl border border-white/10 relative overflow-hidden bg-slate-950/40 backdrop-blur-md">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full filter blur-3xl pointer-events-none" />
               
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 items-center justify-items-center opacity-85">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 items-center justify-items-center opacity-90">
                 {[
                   {
                     name: "Google Cloud",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                       </svg>
                     )
                   },
                   {
                     name: "Microsoft 365",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M0 0h11v11H0zM13 0h11v11H13zM0 13h11v11H0zM13 13h11v11H13z" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 23 23">
+                        <rect x="0" y="0" width="10" height="10" fill="#f25022" />
+                        <rect x="12" y="0" width="10" height="10" fill="#7fba00" />
+                        <rect x="0" y="12" width="10" height="10" fill="#00a4ef" />
+                        <rect x="12" y="12" width="10" height="10" fill="#ffb900" />
                       </svg>
                     )
                   },
                   {
                     name: "AWS",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#ff9900" />
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#ff9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     )
                   },
                   {
                     name: "Jio Fiber",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="6" />
-                        <circle cx="12" cy="12" r="2" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="#0059c3" strokeWidth="2.5" fill="none" />
+                        <circle cx="12" cy="12" r="6" stroke="#00a8e8" strokeWidth="2" fill="none" />
+                        <circle cx="12" cy="12" r="2" fill="#0059c3" />
                       </svg>
                     )
                   },
                   {
                     name: "Sophos",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#0055ff" />
                       </svg>
                     )
                   },
                   {
                     name: "Cisco Systems",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="2" y="14" width="2" height="6" />
-                        <rect x="6" y="8" width="2" height="12" />
-                        <rect x="10" y="4" width="2" height="16" />
-                        <rect x="14" y="4" width="2" height="16" />
-                        <rect x="18" y="8" width="2" height="12" />
-                        <rect x="22" y="14" width="2" height="6" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#049fd9">
+                        <rect x="2" y="14" width="2" height="6" rx="0.5" />
+                        <rect x="6" y="8" width="2" height="12" rx="0.5" />
+                        <rect x="10" y="4" width="2" height="16" rx="0.5" />
+                        <rect x="14" y="4" width="2" height="16" rx="0.5" />
+                        <rect x="18" y="8" width="2" height="12" rx="0.5" />
+                        <rect x="22" y="14" width="2" height="6" rx="0.5" />
                       </svg>
                     )
                   },
                   {
                     name: "Fortinet",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#c32026" strokeWidth="2.5" />
+                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#c32026" strokeWidth="2" />
                       </svg>
                     )
                   },
                   {
                     name: "Zoho",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="6" cy="6" r="4" />
-                        <circle cx="18" cy="6" r="4" />
-                        <circle cx="6" cy="18" r="4" />
-                        <circle cx="18" cy="18" r="4" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="8" height="8" rx="1" fill="#e53935" />
+                        <rect x="14" y="2" width="8" height="8" rx="1" fill="#1e88e5" />
+                        <rect x="2" y="14" width="8" height="8" rx="1" fill="#43a047" />
+                        <rect x="14" y="14" width="8" height="8" rx="1" fill="#fdd835" />
                       </svg>
                     )
                   },
                   {
                     name: "Salesforce",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#00a1e0">
                         <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                       </svg>
                     )
@@ -452,7 +456,7 @@ export default function Home() {
                   {
                     name: "Adobe",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#ff0000">
                         <path d="M14.3 2.1l9.2 20.3h-5.4l-3-7.2H9.3l-3 7.2H1L10.2 2.1h4.1zM12 6.5L9.9 11.5h4.2L12 6.5z" />
                       </svg>
                     )
@@ -460,7 +464,7 @@ export default function Home() {
                   {
                     name: "Dropbox",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="#0061ff">
                         <path d="M6 2L1 5.3l5 3.3 5-3.3L6 2zm12 0l-5 3.3 5 3.3 5-3.3L18 2zM1 12l5 3.3 5-3.3-5-3.3-5 3.3zm17-3.3l-5 3.3 5 3.3 5-3.3-5-3.3zM6 16.3l6 4 6-4-6-4.1-6 4.1z" />
                       </svg>
                     )
@@ -468,17 +472,17 @@ export default function Home() {
                   {
                     name: "Trend Micro",
                     svg: (
-                      <svg className="w-7 h-7 text-slate-500 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <path d="M12 2a10 10 0 1010 10" />
-                        <path d="M12 6a6 6 0 106 6" />
-                        <circle cx="12" cy="12" r="2" />
+                      <svg className="w-7 h-7 transition-transform duration-300" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2a10 10 0 1010 10" stroke="#d8232a" strokeWidth="2.5" />
+                        <path d="M12 6a6 6 0 106 6" stroke="#d8232a" strokeWidth="2" />
+                        <circle cx="12" cy="12" r="2" fill="#d8232a" />
                       </svg>
                     )
                   }
                 ].map((logo, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col items-center justify-center p-3 w-full rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 transition-all hover:bg-slate-900/50 group"
+                    className="flex flex-col items-center justify-center p-3 w-full rounded-xl bg-white/5 border border-white/5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all hover:bg-slate-900/50 group"
                   >
                     <div className="mb-2 group-hover:scale-110 transition-transform duration-300">
                       {logo.svg}
