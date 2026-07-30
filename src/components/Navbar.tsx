@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Data Recovery", href: "/#data-recovery" },
   { name: "Refurbished Products", href: "/#refurbished-products" },
   { name: "Portfolio", href: "/#portfolio" },
+  { name: "Downloads", href: "/downloads" },
   { name: "Blog", href: "/#blog" },
   { name: "Careers", href: "/#careers" },
   { name: "Contact", href: "/#contact" },
