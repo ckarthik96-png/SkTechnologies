@@ -18,13 +18,16 @@ import {
   Mail,
   Workflow,
   HardDriveUpload,
-  Wifi,
   Users,
   ArrowRight,
-  Filter
+  Filter,
+  Fingerprint,
+  Cable,
+  Activity,
+  Database
 } from "lucide-react";
 
-// The full 15 services list
+// The full 18 services list
 const servicesList = [
   {
     id: "it-infra",
@@ -35,7 +38,7 @@ const servicesList = [
   },
   {
     id: "networking",
-    title: "Networking",
+    title: "Networking & Wi-Fi",
     category: "network",
     description: "Robust WAN routing, LAN segmentations, VLAN routing tables, switches, and load balancer installations.",
     icon: Network,
@@ -69,10 +72,10 @@ const servicesList = [
     icon: Lock,
   },
   {
-    id: "server-management",
-    title: "Server Management",
+    id: "server-installation",
+    title: "Server Installation & Maintenance",
     category: "infra",
-    description: "Domain Controller setups, Active Directory policies, DNS configs, IIS/Apache web hosting, and Linux administration.",
+    description: "Physical and virtual server setups, raid array configurations, power backups, and daily uptime monitoring.",
     icon: Server,
   },
   {
@@ -98,37 +101,58 @@ const servicesList = [
   },
   {
     id: "email-solutions",
-    title: "Email Solutions",
+    title: "Email & Domain Solutions",
     category: "cloud",
     description: "Corporate domain setups, spam filtering, distribution groups, SPF/DKIM records validation, and mail migrations.",
     icon: Mail,
   },
   {
     id: "m365",
-    title: "Microsoft 365",
+    title: "Microsoft 365 Integration",
     category: "cloud",
     description: "Licensing provisioning, Sharepoint document management, Teams collaboration rules, and security controls.",
     icon: Workflow,
   },
   {
     id: "backup-solutions",
-    title: "Backup Solutions",
+    title: "Backup & Disaster Recovery",
     category: "cloud",
     description: "Automated local NAS storage and hybrid offsite cloud backups (3-2-1 strategy) with routine recovery testing.",
     icon: HardDriveUpload,
   },
   {
-    id: "wifi-deployment",
-    title: "Wi-Fi Deployment",
+    id: "structured-cabling",
+    title: "Structured Cabling",
     category: "network",
-    description: "Office heatmaps analysis, access point configurations, captive portals, guest networks, and controller tuning.",
-    icon: Wifi,
+    description: "Clean voice & data Cat6 laying, patch panel dressing, rack mapping, and physical connectivity certification.",
+    icon: Cable,
   },
   {
-    id: "it-consulting",
-    title: "IT Consulting",
+    id: "biometric-attendance",
+    title: "Biometric Attendance Systems",
     category: "infra",
-    description: "Comprehensive audits, compliance roadmaps, software assessments, capacity planning, and architecture audits.",
+    description: "Fingerprint and facial scanners installation, magnetic locks, gate barriers, and local time logs software config.",
+    icon: Fingerprint,
+  },
+  {
+    id: "vpn-solutions",
+    title: "VPN & Remote Access",
+    category: "network",
+    description: "Secure site-to-site tunnels and remote client dial-in portals, enabling safe database sync for home offices.",
+    icon: Activity,
+  },
+  {
+    id: "data-recovery-srv",
+    title: "Professional Data Recovery",
+    category: "cloud",
+    description: "Secure forensic file extraction from mechanical clicks HDDs, raw partition flash SSDs, and broken RAID sets.",
+    icon: Database,
+  },
+  {
+    id: "remote-it-support",
+    title: "Remote IT Support",
+    category: "support",
+    description: "Rapid response screen share diagnosis resolving server logs, user permissions, and email client failures.",
     icon: Users,
   },
 ];

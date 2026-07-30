@@ -23,7 +23,7 @@ export default function Footer() {
       {/* Glow Effect */}
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div className="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
         {/* Company Info */}
         <div className="flex flex-col gap-4">
           <Link href="/" className="flex items-center gap-3">
@@ -37,7 +37,7 @@ export default function Footer() {
               SkyEagle <span className="text-secondary text-xs">Technologies</span>
             </span>
           </Link>
-          <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+          <p className="text-xs text-slate-400 leading-relaxed">
             Empowering businesses with smart IT solutions. Enterprise-grade cybersecurity, networking, and IT support services tailored to keep your operations scaling securely.
           </p>
           <div className="flex items-center gap-3 mt-2">
@@ -61,61 +61,92 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Quick Links */}
+        {/* Sitemap / Quick Links */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-5">Quick Links</h4>
-          <ul className="flex flex-col gap-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-5">Sitemap</h4>
+          <ul className="flex flex-col gap-2.5">
             <li>
-              <Link href="/" className="text-sm text-slate-400 hover:text-primary transition-colors">Home</Link>
+              <Link href="/" className="text-xs text-slate-400 hover:text-primary transition-colors">Home</Link>
             </li>
             <li>
-              <Link href="/about" className="text-sm text-slate-400 hover:text-primary transition-colors">About Us</Link>
+              <Link href="/about" className="text-xs text-slate-400 hover:text-primary transition-colors">About Us</Link>
             </li>
             <li>
-              <Link href="/services" className="text-sm text-slate-400 hover:text-primary transition-colors">Services</Link>
+              <Link href="/services" className="text-xs text-slate-400 hover:text-primary transition-colors">IT Services</Link>
             </li>
             <li>
-              <Link href="/industries" className="text-sm text-slate-400 hover:text-primary transition-colors">Industries</Link>
+              <Link href="/data-recovery" className="text-xs text-slate-400 hover:text-primary transition-colors">Data Recovery</Link>
             </li>
             <li>
-              <Link href="/contact" className="text-sm text-slate-400 hover:text-primary transition-colors">Contact Us</Link>
+              <Link href="/refurbished-products" className="text-xs text-slate-400 hover:text-primary transition-colors">Refurbished Products</Link>
             </li>
           </ul>
         </div>
 
-        {/* Services List */}
+        {/* Resources */}
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-5">Key Services</h4>
-          <ul className="flex flex-col gap-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-5">Resources</h4>
+          <ul className="flex flex-col gap-2.5">
             <li>
-              <Link href="/services?category=infra" className="text-sm text-slate-400 hover:text-primary transition-colors">IT Infrastructure</Link>
+              <Link href="/portfolio" className="text-xs text-slate-400 hover:text-primary transition-colors">Case Studies</Link>
             </li>
             <li>
-              <Link href="/services?category=network" className="text-sm text-slate-400 hover:text-primary transition-colors">Networking & Wi-Fi</Link>
+              <Link href="/blog" className="text-xs text-slate-400 hover:text-primary transition-colors">IT Blog</Link>
             </li>
             <li>
-              <Link href="/services?category=cloud" className="text-sm text-slate-400 hover:text-primary transition-colors">Cloud & M365 Solutions</Link>
+              <Link href="/careers" className="text-xs text-slate-400 hover:text-primary transition-colors">Careers</Link>
             </li>
             <li>
-              <Link href="/services?category=network" className="text-sm text-slate-400 hover:text-primary transition-colors">Cyber Security & Firewall</Link>
+              <Link href="/industries" className="text-xs text-slate-400 hover:text-primary transition-colors">Industries Served</Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Downloads Center */}
+        <div>
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-5">Downloads Center</h4>
+          <ul className="flex flex-col gap-2.5">
+            <li>
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); alert("SkyEagle Company Profile Brochure prepared! (Mock PDF Asset)"); }}
+                className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1"
+              >
+                Company Profile (PDF)
+              </a>
             </li>
             <li>
-              <Link href="/services?category=support" className="text-sm text-slate-400 hover:text-primary transition-colors">Annual Maintenance (AMC)</Link>
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); alert("SkyEagle AMC Services Specification Brochure prepared! (Mock PDF Asset)"); }}
+                className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1"
+              >
+                AMC Service Sheet (PDF)
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); alert("SkyEagle Refurbished Product Catalog Brochure prepared! (Mock PDF Asset)"); }}
+                className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1"
+              >
+                Product Catalog (PDF)
+              </a>
             </li>
           </ul>
         </div>
 
         {/* Contact Info */}
         <div className="flex flex-col gap-4">
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-1">Get In Touch</h4>
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-1">Get In Touch</h4>
           <div className="flex items-start gap-3">
             <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <p className="text-sm text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-400 leading-relaxed">
                 Srinidhi Layout, Konanakunte,<br />
                 Bengaluru, Karnataka - 560062, India
               </p>
-              <p className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
+              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
                 Service Areas: Bengaluru, Mysuru, Karnataka
               </p>
             </div>
@@ -123,20 +154,20 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <Phone className="w-4 h-4 text-primary shrink-0" />
             <div className="flex flex-col">
-              <a href="tel:+919353427314" className="text-sm text-slate-400 hover:text-white transition-colors">
+              <a href="tel:+919353427314" className="text-xs text-slate-400 hover:text-white transition-colors">
                 +91 93534 27314
               </a>
-              <span className="text-[10px] text-slate-500 font-medium">Hours: 24/7 Service Desk</span>
+              <span className="text-[9px] text-slate-500 font-medium">Hours: 24/7 Service Desk</span>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Mail className="w-4 h-4 text-primary shrink-0" />
-            <a href="mailto:sales@skyeagletechno.com" className="text-sm text-slate-400 hover:text-white transition-colors break-all">
+            <a href="mailto:sales@skyeagletechno.com" className="text-xs text-slate-400 hover:text-white transition-colors break-all">
               sales@skyeagletechno.com
             </a>
           </div>
           <div className="h-px bg-white/5 my-1" />
-          <div className="text-[11px] text-slate-500">
+          <div className="text-[10px] text-slate-500">
             GST Registration: In Progress
           </div>
         </div>

@@ -48,6 +48,46 @@ export const metadata: Metadata = {
   },
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "SkyEagle Technologies",
+  "image": "https://skyeagletechno.com/logo.png",
+  "@id": "https://skyeagletechno.com/#localbusiness",
+  "url": "https://skyeagletechno.com",
+  "telephone": "+919353427314",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Srinidhi Layout, Konanakunte",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "postalCode": "560062",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 12.8837,
+    "longitude": 77.5685
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "sameAs": [
+    "https://github.com/ckarthik96-png/SkTechnologies"
+  ]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,6 +100,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col bg-[#050816] text-white">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
         <Preloader />
         <ScrollProgress />
         <Navbar />

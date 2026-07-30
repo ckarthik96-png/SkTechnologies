@@ -10,7 +10,11 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Industries", href: "/industries" },
+  { name: "Data Recovery", href: "/data-recovery" },
+  { name: "Refurbished Products", href: "/refurbished-products" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Blog", href: "/blog" },
+  { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -59,7 +63,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-5">
           {navLinks.map((link) => {
             const isActive =
               link.href === "/"
@@ -69,7 +73,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium relative py-1 transition-colors hover:text-white ${
+                className={`text-[13px] font-medium relative py-1 transition-colors hover:text-white ${
                   isActive ? "text-white font-semibold" : "text-slate-400"
                 }`}
               >
@@ -87,7 +91,7 @@ export default function Navbar() {
         </nav>
 
         {/* CTA Button */}
-        <div className="hidden md:block">
+        <div className="hidden xl:block">
           <Link
             href="/contact"
             className="btn-gradient px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide uppercase inline-flex items-center gap-1.5"
@@ -100,7 +104,7 @@ export default function Navbar() {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 md:hidden text-slate-300 hover:text-white transition-colors focus:outline-none"
+          className="p-2 xl:hidden text-slate-300 hover:text-white transition-colors focus:outline-none"
           aria-label="Toggle Menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -114,9 +118,9 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-white/5 bg-dark-bg/95 backdrop-blur-lg overflow-hidden"
+            className="xl:hidden border-b border-white/5 bg-dark-bg/95 backdrop-blur-lg overflow-hidden"
           >
-            <div className="px-6 py-6 flex flex-col gap-5">
+            <div className="px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/"

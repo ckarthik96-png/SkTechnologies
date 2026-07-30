@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, MessageSquare, ArrowUp } from "lucide-react";
+import { Phone, MessageSquare, ArrowUp, Mail, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function FloatingContacts() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -36,6 +37,24 @@ export default function FloatingContacts() {
           </motion.button>
         )}
       </AnimatePresence>
+
+      {/* Floating Quote Button */}
+      <Link
+        href="/contact"
+        className="w-11 h-11 rounded-full bg-amber-600 hover:bg-amber-700 text-white flex items-center justify-center shadow-lg transition-colors cursor-pointer"
+        aria-label="Request Quote"
+      >
+        <FileText className="w-5 h-5" />
+      </Link>
+
+      {/* Floating Email Button */}
+      <a
+        href="mailto:sales@skyeagletechno.com"
+        className="w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center shadow-lg transition-colors cursor-pointer"
+        aria-label="Email Support"
+      >
+        <Mail className="w-5 h-5" />
+      </a>
 
       {/* Floating Call Button */}
       <a

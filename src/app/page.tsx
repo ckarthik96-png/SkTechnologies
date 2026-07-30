@@ -84,19 +84,63 @@ const testimonials = [
 const faqItems = [
   {
     question: "What is an Annual Maintenance Contract (AMC) with SkyEagle?",
-    answer: "An AMC is a comprehensive service agreement where SkyEagle takes full responsibility for maintaining your IT hardware, networks, desktops, and printers. It includes routine diagnostic cleanups, unlimited remote desk help, and prompt emergency onsite engineer visits.",
+    answer: "An AMC is a comprehensive service agreement where SkyEagle takes full responsibility for maintaining your IT hardware, networks, desktops, and printers. It includes routine diagnostic cleanups, remote desk help, and prompt emergency onsite engineer visits.",
   },
   {
     question: "Does SkyEagle design and install structured network cabling?",
-    answer: "Yes! We specialize in end-to-end structured network cabling (Cat6/Cat6A/Fiber), rack dressing, switch provisioning, and enterprise Wi-Fi deployment for corporate offices, warehouses, and educational campuses.",
+    answer: "Yes! We specialize in structured network cabling (Cat6/Cat6A/Fiber), rack dressing, switch provisioning, and enterprise Wi-Fi deployment for corporate offices, warehouses, and campuses.",
   },
   {
-    question: "How does your client contact routing system work?",
-    answer: "When you fill out our contact form, it captures your details and immediately formats them into a neat message template, opening a WhatsApp chat with Saarika, our direct coordinator. This ensures instant response and prevents tickets from getting lost in slow email pipelines.",
+    question: "How quickly can your onsite support engineers respond in Bengaluru?",
+    answer: "For AMC clients, we offer priority SLAs with onsite response times as fast as 2 to 4 hours for critical network or server outages, and next-business-day response for non-critical desk issues.",
   },
   {
-    question: "What security measures do you deploy for office firewalls?",
-    answer: "We deploy industry-standard next-generation firewalls (NGFW) from top partners like Fortinet, Sophos, and SonicWall. Our setups configure Deep Packet Inspection, sandboxing, malware filters, employee browsing controls, and secure Site-to-Site IPsec VPNs.",
+    question: "Do you provide remote IT helpdesk support for office teams?",
+    answer: "Yes, we maintain a dedicated remote helpdesk. Our certified systems administrators use secure screen sharing to resolve software configs, email issues, M365 access rules, and server logs instantly.",
+  },
+  {
+    question: "What security protocols do you configure for next-gen firewalls?",
+    answer: "We deploy firewalls from Fortinet, Sophos, and SonicWall. Our setups configure Deep Packet Inspection, sandboxing, web category filtering, intrusion prevention (IPS), and secure client dial-in VPNs.",
+  },
+  {
+    question: "Can you set up and migrate our office email to Microsoft 365?",
+    answer: "Yes, we handle the entire migration lifecycle: domain validation, mail account provisioning, MX/SPF/DKIM record validation, mailbox transfer (Outlook/IMAP/Google Workspace), and local client setup.",
+  },
+  {
+    question: "What is your data backup and disaster recovery strategy?",
+    answer: "We design 3-2-1 backup structures: storing three copies of your data across two local storage units (like an onsite NAS) and replicating one copy to an encrypted offsite cloud backup vault.",
+  },
+  {
+    question: "Do you support biometric attendance and electronic door access controls?",
+    answer: "Yes! We install fingerprint and facial recognition scanners, magnetic lock doors, gate controllers, and integrate local timesheet logs software with your office payroll protocols.",
+  },
+  {
+    question: "What locations do you serve with onsite visits?",
+    answer: "We provide regular onsite support across Bengaluru, Mysuru, Hubballi, and Mangaluru. We also support remote IT nodes PAN India through secure remote management platforms.",
+  },
+  {
+    question: "What testing and warranty do your refurbished products include?",
+    answer: "All refurbished business laptops, desktops, and workstations undergo a rigorous 25-point hardware diagnostic sweep and come backed by our 6-month SkyEagle support warranty.",
+  },
+  {
+    question: "How can we trust that data recovery is handled securely?",
+    answer: "We sign strict Non-Disclosure Agreements (NDA) prior to handling corporate media. Recovery is performed sector-by-sector in our clean labs using secure read-only diagnostic systems.",
+  },
+  {
+    question: "What scenarios of drive failure can you recover data from?",
+    answer: "We recover files from logical failures (formatted partitions, accidental deletion, BitLocker lockout) and physical failures (clicking drives, liquid spills, and controller board short circuits).",
+  },
+  {
+    question: "Can we purchase individual spare parts like RAM or SSDs from you?",
+    answer: "Yes! We supply brand new, box-pack Samsung/Kingston RAM chips, SSD storage units, batteries, keyboards, power adapters, and Cisco/Fortinet network spares.",
+  },
+  {
+    question: "What are the payment options and terms for corporate proposals?",
+    answer: "We accept corporate bank transfers (NEFT/RTGS/IMPS) and UPI. AMC contracts are billed quarterly or annually, while hardware sales require part-advance payments depending on order scale.",
+  },
+  {
+    question: "Do you install and configure CCTV security camera networks?",
+    answer: "Yes. We install high-definition IP cameras, setup central Network Video Recorders (NVR) with RAID storage redundancy, and configure secure mobile app access for real-time monitoring.",
   },
 ];
 
@@ -496,7 +540,7 @@ export default function Home() {
               href="/services"
               className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2"
             >
-              View All 15 Services
+              View All 18 Services
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -583,6 +627,116 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- HOMEPAGE DATA RECOVERY PREVIEW --- */}
+      <section className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/20">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side: content */}
+            <div className="space-y-6">
+              <h2 className="text-xs uppercase tracking-widest text-primary font-bold">Secure Labs</h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                Professional Data Recovery Services
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Lost vital database files, accounting documents, or business assets? We extract files from mechanical clicks mechanical drives, raw partition SSDs, and crashed enterprise RAID controller arrays.
+              </p>
+              <ul className="grid grid-cols-2 gap-3.5 text-xs text-slate-300">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> Hard Disk Drives (HDD)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> SSD & NVMe Modules
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> RAID & NAS Servers
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> Encrypted Volumes
+                </li>
+              </ul>
+              <div className="pt-2">
+                <Link
+                  href="/data-recovery"
+                  className="btn-gradient px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
+                >
+                  Explore Recovery Services
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right side: visual mock */}
+            <div className="glass-card p-8 rounded-2xl border border-white/10 relative overflow-hidden bg-slate-950/40">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full filter blur-xl animate-pulse" />
+              <h4 className="font-bold text-xs uppercase tracking-wider text-slate-300 mb-4 border-b border-white/5 pb-2">Diagnostic Scan Log</h4>
+              <div className="font-mono text-[11px] text-slate-400 space-y-2 leading-relaxed">
+                <div>[SYSTEM] Initializing physical drive scan...</div>
+                <div className="text-emerald-400">[SUCCESS] Controller board communication active.</div>
+                <div>[STATUS] Mechanical head status: <span className="text-amber-400">Degraded (Sector Errors)</span></div>
+                <div>[ACTION] Cloning block sectors securely...</div>
+                <div className="text-emerald-400">[EXTRACT] 1,480 database files recovered.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- HOMEPAGE REFURBISHED PRODUCTS PREVIEW --- */}
+      <section className="section-padding relative z-10 px-6 border-b border-white/5 bg-[#030611]/10">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3">Enterprise Hardware</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Refurbished IT Hardware Catalog</h3>
+            <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4">
+              Get certified, business-grade laptops and desktops from top corporate fleets at a fraction of retail prices, backed by a 6-month support warranty.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              { name: "Dell Latitude 7490", specs: "i5 8th Gen | 16GB RAM | 256GB SSD", price: "INR 18,500 approx." },
+              { name: "Lenovo ThinkPad T480s", specs: "i7 8th Gen | 16GB RAM | 512GB SSD", price: "INR 22,000 approx." },
+              { name: "HP EliteBook 840 G5", specs: "i5 8th Gen | 16GB RAM | 512GB SSD", price: "INR 19,800 approx." },
+            ].map((p, idx) => (
+              <div key={idx} className="glass-card p-6 rounded-xl border border-white/5 flex flex-col justify-between hover:border-primary/20 transition-all">
+                <div>
+                  <h4 className="font-bold text-white text-sm mb-1">{p.name}</h4>
+                  <p className="text-[11px] text-slate-400 mb-4">{p.specs}</p>
+                </div>
+                <div className="flex items-center justify-between text-xs pt-4 border-t border-white/5">
+                  <span className="text-slate-500">{p.price}</span>
+                  <span className="text-emerald-400 font-semibold">Grade A++</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              href="/refurbished-products"
+              className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2"
+            >
+              View Refurbished Inventory
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* --- HOMEPAGE BRANDS SUPPORTED STRIP --- */}
+      <section className="py-10 relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-6">
+            <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Supported Technologies & OEM Brands</p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-40 grayscale hover:opacity-75 transition-opacity">
+            {["Microsoft", "Cisco", "Fortinet", "Sophos", "Dell", "HP", "Lenovo", "Apple", "VMware", "AWS", "Google Cloud", "Intel", "AMD"].map((brand, idx) => (
+              <span key={idx} className="text-xs sm:text-sm font-black tracking-wider text-slate-400">{brand}</span>
+            ))}
           </div>
         </div>
       </section>
