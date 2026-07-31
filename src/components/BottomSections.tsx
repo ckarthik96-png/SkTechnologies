@@ -1,6 +1,102 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight, HelpCircle, BookOpen } from "lucide-react";
+import Accordion from "./Accordion";
+
+const faqItems = [
+  {
+    question: "What is an Annual Maintenance Contract (AMC) with SkyEagle?",
+    answer: "An AMC is a comprehensive service agreement where SkyEagle takes full responsibility for maintaining your IT hardware, networks, desktops, and printers. It includes routine diagnostic cleanups, remote desk help, and prompt emergency onsite engineer visits.",
+  },
+  {
+    question: "Does SkyEagle design and install structured network cabling?",
+    answer: "Yes! We specialize in structured network cabling (Cat6/Cat6A/Fiber), rack dressing, switch provisioning, and enterprise Wi-Fi deployment for corporate offices, warehouses, and campuses.",
+  },
+  {
+    question: "How quickly can your onsite support engineers respond in Bengaluru?",
+    answer: "For AMC clients, we offer priority SLAs with onsite response times as fast as 2 to 4 hours for critical network or server outages, and next-business-day response for non-critical desk issues.",
+  },
+  {
+    question: "Do you provide remote IT helpdesk support for office teams?",
+    answer: "Yes, we maintain a dedicated remote helpdesk. Our certified systems administrators use secure screen sharing to resolve software configs, email issues, M365 access rules, and server logs instantly.",
+  },
+  {
+    question: "What security protocols do you configure for next-gen firewalls?",
+    answer: "We deploy firewalls from Fortinet, Sophos, and SonicWall. Our setups configure Deep Packet Inspection, sandboxing, web category filtering, intrusion prevention (IPS), and secure client dial-in VPNs.",
+  },
+  {
+    question: "Can you set up and migrate our office email to Microsoft 365?",
+    answer: "Yes, we handle the entire migration lifecycle: domain validation, mail account provisioning, MX/SPF/DKIM record validation, mailbox transfer (Outlook/IMAP/Google Workspace), and local client setup.",
+  },
+  {
+    question: "What is your data backup and disaster recovery strategy?",
+    answer: "We design 3-2-1 backup structures: storing three copies of your data across two local storage units (like an onsite NAS) and replicating one copy to an encrypted offsite cloud backup vault.",
+  },
+  {
+    question: "Do you support biometric attendance and electronic door access controls?",
+    answer: "Yes! We install fingerprint and facial recognition scanners, magnetic lock doors, gate controllers, and integrate local timesheet logs software with your office payroll protocols.",
+  },
+  {
+    question: "What locations do you serve with onsite visits?",
+    answer: "We provide regular onsite support across Bengaluru, Mysuru, Hubballi, and Mangaluru. We also support remote IT nodes PAN India through secure remote management platforms.",
+  },
+  {
+    question: "What testing and warranty do your refurbished products include?",
+    answer: "All refurbished business laptops, desktops, and workstations undergo a rigorous 25-point hardware diagnostic sweep and come backed by our 6-month SkyEagle support warranty.",
+  },
+  {
+    question: "How can we trust that data recovery is handled securely?",
+    answer: "We sign strict Non-Disclosure Agreements (NDA) prior to handling corporate media. Recovery is performed sector-by-sector in our clean labs using secure read-only diagnostic systems.",
+  },
+  {
+    question: "What scenarios of drive failure can you recover data from?",
+    answer: "We recover files from logical failures (formatted partitions, accidental deletion, BitLocker lockout) and physical failures (clicking drives, liquid spills, and controller board short circuits).",
+  },
+  {
+    question: "Can we purchase individual spare parts like RAM or SSDs from you?",
+    answer: "Yes! We supply brand new, box-pack Samsung/Kingston RAM chips, SSD storage units, batteries, keyboards, power adapters, and Cisco/Fortinet network spares.",
+  },
+  {
+    question: "What are the payment options and terms for corporate proposals?",
+    answer: "We accept corporate bank transfers (NEFT/RTGS/IMPS) and UPI. AMC contracts are billed quarterly or annually, while hardware sales require part-advance payments depending on order scale.",
+  },
+  {
+    question: "Do you install and configure CCTV security camera networks?",
+    answer: "Yes. We install high-definition IP cameras, setup central Network Video Recorders (NVR) with RAID storage redundancy, and configure secure mobile app access for real-time monitoring.",
+  },
+];
+
+const blogPosts = [
+  {
+    category: "Cloud Security",
+    date: "July 28, 2026",
+    title: "Microsoft 365 Security Settings Checklist for Office Administrators",
+    desc: "A hands-on guide to securing your M365 tenant: enabling MFA, configuring SPF/DKIM validation records, disabling legacy protocols, and preventing database access leaks.",
+    author: "SkyEagle Tech Board",
+  },
+  {
+    category: "Network Defense",
+    date: "July 15, 2026",
+    title: "Why Next-Gen Firewalls Are Essential for Small Business Networks",
+    desc: "Unlike standard routers, next-gen firewalls perform Deep Packet Inspection to detect malware payloads, block suspicious outbound ports, and secure remote VPN terminals.",
+    author: "Cyber Security Specialist",
+  },
+  {
+    category: "Data Protection",
+    date: "June 30, 2026",
+    title: "Implementing the 3-2-1 Backup Strategy: A Disaster Recovery Guide",
+    desc: "Protect your critical client records from disk malfunctions or malware attacks by storing three copies of database logs across two different media types, with one stored offsite.",
+    author: "Systems Engineer",
+  },
+  {
+    category: "IT Procurement",
+    date: "June 12, 2026",
+    title: "Buying Refurbished Business Laptops: ThinkPad vs. Latitude Comparison",
+    desc: "Discover why buying certified business-grade refurbished computers (like the Lenovo T480s or Dell Latitude 7490) is far superior to buying consumer laptops, at a fraction of the cost.",
+    author: "Hardware Desk",
+  },
+];
 
 export default function BottomSections() {
   const partners = [
@@ -175,6 +271,75 @@ export default function BottomSections() {
                 </div>
                 <h4 className="text-xs font-bold text-white mb-2 uppercase tracking-wider">{p.name}</h4>
                 <p className="text-[10px] text-slate-400 leading-relaxed max-w-[150px] mx-auto">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 relative z-10 px-6 border-b border-white/5 bg-[#030611]/30">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3 flex items-center justify-center gap-1.5">
+              <HelpCircle className="w-4 h-4" /> FAQ
+            </h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Frequently Asked Questions</h3>
+          </div>
+
+          <Accordion items={faqItems} />
+        </div>
+      </section>
+
+      {/* Resources & Blog Section */}
+      <section className="py-20 relative z-10 px-6 border-b border-white/5 bg-[#030611]/10">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-xs uppercase tracking-widest text-primary font-bold mb-3 flex items-center justify-center gap-1.5">
+              <BookOpen className="w-4 h-4" /> Resources & Blog
+            </h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Insights & Technology Best Practices</h3>
+            <p className="text-sm text-slate-400 max-w-2xl mx-auto mt-4">
+              Read guides, configuration walkthroughs, and cybersecurity audits published by our Bengaluru engineering team.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {blogPosts.map((art, idx) => (
+              <div key={idx} className="glass-card p-6 md:p-8 rounded-2xl border border-white/5 flex flex-col justify-between bg-slate-950/20 group hover:border-primary/20 transition-all duration-300">
+                <div>
+                  <div className="flex items-center justify-between gap-4 mb-4">
+                    <span className="text-[9px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                      {art.category}
+                    </span>
+                    <span className="text-[10px] text-slate-500">{art.date}</span>
+                  </div>
+                  <h4 className="font-bold text-white text-base md:text-lg mb-2.5 group-hover:text-primary transition-colors">
+                    {art.title}
+                  </h4>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-6">
+                    {art.desc}
+                  </p>
+                </div>
+                <div className="flex items-center justify-between gap-4 mt-auto pt-4 border-t border-white/5">
+                  <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
+                    {art.author}
+                  </span>
+                  <div className="flex items-center gap-3.5">
+                    <Link
+                      href={`/contact?inquiry=Blog+Details&article=${encodeURIComponent(art.title)}`}
+                      className="text-[10px] font-bold text-primary hover:text-white uppercase tracking-wider"
+                    >
+                      Ask Question
+                    </Link>
+                    <Link
+                      href="/blog"
+                      className="text-[10px] font-bold text-slate-400 hover:text-white uppercase tracking-wider flex items-center gap-1"
+                    >
+                      Read Full <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
