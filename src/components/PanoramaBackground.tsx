@@ -97,7 +97,7 @@ export default function PanoramaBackground() {
     let onPointerDownPointerY = 0;
     let onPointerDownLon = 0;
     let onPointerDownLat = 0;
-    let lon = 180; // Facing server aisle
+    let lon = 0; // Directly face the 2 technicians in the server aisle
     let lat = 0;
 
     const onPointerDown = (event: MouseEvent | TouchEvent) => {
@@ -140,7 +140,7 @@ export default function PanoramaBackground() {
       animId = requestAnimationFrame(animate);
 
       if (!isUserInteracting) {
-        lon += 0.12; // Auto 360 Rotation Speed
+        lon += 0.05; // Smooth slow auto rotation
       }
 
       lat = Math.max(-85, Math.min(85, lat));
