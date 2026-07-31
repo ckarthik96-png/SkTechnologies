@@ -193,10 +193,7 @@ export default function Home() {
       {/* --- 1. HERO SECTION with 3D Panorama Background --- */}
       <section
         id="home"
-        className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(5,8,22,0.4), rgba(5,8,22,0.6)), url('/server-panorama.jpg')`,
-        }}
+        className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden"
       >
         {/* 3D Interactive 360° Data Center Panorama */}
         <PanoramaBackground />
