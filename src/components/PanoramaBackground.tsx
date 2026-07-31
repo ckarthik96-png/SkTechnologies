@@ -122,7 +122,7 @@ export default function PanoramaBackground() {
     img.onload = () => {
       gl.bindTexture(gl.TEXTURE_2D, tex);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
@@ -163,7 +163,7 @@ export default function PanoramaBackground() {
 
     const render = () => {
       raf = requestAnimationFrame(render);
-      pan -= 0.0003;
+      pan -= 0.003; // Smooth continuous 360 degree rotation
       cLon += (tLon - cLon) * 0.04;
       cLat += (tLat - cLat) * 0.04;
       const asp = canvas.width / Math.max(canvas.height, 1);
@@ -190,7 +190,7 @@ export default function PanoramaBackground() {
   return (
     <div
       ref={wrapRef}
-      className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
+      className="absolute inset-0 w-full h-full overflow-hidden"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >
