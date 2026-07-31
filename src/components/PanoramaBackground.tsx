@@ -38,22 +38,34 @@ export default function PanoramaBackground() {
       precision highp float;
       varying vec2 vUv;
       uniform sampler2D uTex;
-      uniform float uLon;   // horizontal rotation in radians
-      uniform float uLat;   // vertical tilt in radians
-      uniform float uFov;   // vertical FoV in radians
+      uniform float uLon;
+      uniform float uLat;
+      uniform float uFov;
       uniform float uAspect;
 
       const float PI = 3.14159265358979;
 
+      // Boost brightness, contrast and saturation
+      vec3 enhance(vec3 col) {
+        // Brightness boost
+        col *= 1.55;
+        // Contrast (push away from 0.5)
+        col = (col - 0.5) * 1.25 + 0.5;
+        // Saturation boost
+        float lum = dot(col, vec3(0.299, 0.587, 0.114));
+        col = mix(vec3(lum), col, 1.4);
+        // Cool-blue tint to match cyber aesthetic
+        col.b = min(col.b * 1.12, 1.0);
+        return clamp(col, 0.0, 1.0);
+      }
+
       void main() {
-        // Convert screen UV to view ray direction
         vec2 ndc = vUv * 2.0 - 1.0;
         ndc.x *= uAspect;
 
         float halfFov = uFov * 0.5;
         vec3 ray = normalize(vec3(ndc.x * tan(halfFov), ndc.y * tan(halfFov), 1.0));
 
-        // Rotate by latitude (pitch)
         float cosLat = cos(uLat);
         float sinLat = sin(uLat);
         vec3 rayLat = vec3(
@@ -62,7 +74,6 @@ export default function PanoramaBackground() {
           ray.y * sinLat + ray.z * cosLat
         );
 
-        // Rotate by longitude (yaw)
         float cosLon = cos(uLon);
         float sinLon = sin(uLon);
         vec3 finalRay = vec3(
@@ -71,14 +82,14 @@ export default function PanoramaBackground() {
           rayLat.x * sinLon + rayLat.z * cosLon
         );
 
-        // Convert ray to equirectangular UV
         float lon = atan(finalRay.x, finalRay.z);
         float lat = asin(clamp(finalRay.y / length(finalRay), -1.0, 1.0));
 
         float u = (lon / (2.0 * PI)) + 0.5;
         float v = (lat / PI) + 0.5;
 
-        gl_FragColor = texture2D(uTex, vec2(u, v));
+        vec4 texCol = texture2D(uTex, vec2(u, v));
+        gl_FragColor = vec4(enhance(texCol.rgb), texCol.a);
       }
     `;
 
@@ -196,15 +207,15 @@ export default function PanoramaBackground() {
         className="absolute inset-0 w-full h-full"
         style={{ display: "block" }}
       />
-      {/* Readability overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050816]/80 via-[#050816]/50 to-[#050816]/88 z-10 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/55 via-transparent to-[#050816]/55 z-10 pointer-events-none" />
+      {/* Lighter overlays — let the vivid panorama breathe */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050816]/65 via-[#050816]/30 to-[#050816]/70 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/35 via-transparent to-[#050816]/35 z-10 pointer-events-none" />
       {/* Cyber scanlines */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,150,255,0.012) 2px, rgba(0,150,255,0.012) 4px)",
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,150,255,0.018) 2px, rgba(0,150,255,0.018) 4px)",
         }}
       />
     </div>
