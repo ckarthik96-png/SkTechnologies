@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import BottomSections from "@/components/BottomSections";
 import {
   Server,
   Network,
@@ -338,6 +339,8 @@ function ServicesContent() {
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
+
+        <BottomSections />
 
       </div>
     </div>

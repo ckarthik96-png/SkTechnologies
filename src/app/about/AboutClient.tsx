@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Compass, Target, Shield, Award, Users, Heart } from "lucide-react";
+import BottomSections from "@/components/BottomSections";
 
 export default function AboutClient() {
   const values = [
@@ -159,6 +160,8 @@ export default function AboutClient() {
             })}
           </div>
         </div>
+
+        <BottomSections />
 
       </div>
     </div>

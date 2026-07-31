@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import BottomSections from "@/components/BottomSections";
 import {
   Database,
   HardDrive,
@@ -336,6 +337,8 @@ export default function DataRecoveryClient() {
             </div>
           </form>
         </div>
+
+        <BottomSections />
 
       </div>
     </div>

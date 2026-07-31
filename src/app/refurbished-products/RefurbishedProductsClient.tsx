@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import BottomSections from "@/components/BottomSections";
 import { ShieldCheck, Check, ShoppingCart, Info } from "lucide-react";
 
 // Catalog items
@@ -353,6 +354,8 @@ export default function RefurbishedProductsClient() {
             </p>
           </div>
         </div>
+
+        <BottomSections />
 
       </div>
     </div>
