@@ -8,6 +8,7 @@ import ContactForm from "@/components/ContactForm";
 function ContactPageContent() {
   const searchParams = useSearchParams();
   const defaultService = searchParams.get("service") || searchParams.get("industry") || undefined;
+  const defaultProduct = searchParams.get("product") || undefined;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -104,7 +105,7 @@ function ContactPageContent() {
 
       {/* Form */}
       <div>
-        <ContactForm key={defaultService} defaultService={defaultService} />
+        <ContactForm key={`${defaultService}-${defaultProduct}`} defaultService={defaultService} defaultProduct={defaultProduct} />
       </div>
     </div>
   );

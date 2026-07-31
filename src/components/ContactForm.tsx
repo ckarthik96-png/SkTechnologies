@@ -3,14 +3,20 @@
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 
-export default function ContactForm({ defaultService }: { defaultService?: string }) {
+export default function ContactForm({ 
+  defaultService, 
+  defaultProduct 
+}: { 
+  defaultService?: string; 
+  defaultProduct?: string; 
+}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     company: "",
     requirement: defaultService || "IT Infrastructure",
-    message: "",
+    message: defaultProduct ? `Inquiry regarding: ${defaultProduct}` : "",
   });
 
 
@@ -22,6 +28,7 @@ export default function ContactForm({ defaultService }: { defaultService?: strin
     "Cloud Solutions",
     "Cyber Security",
     "Data Recovery Solutions",
+    "Hardware Purchase",
     "CCTV Solutions",
     "Firewall Installation",
     "Server Management",
