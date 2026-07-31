@@ -1,138 +1,210 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 
 export default function PanoramaBackground() {
-  const mountRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // --- SCENE SETUP ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 0.01);
+    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl") as WebGLRenderingContext | null;
+    if (!gl) {
+      // Fallback: just show CSS background if WebGL not available
+      return;
+    }
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    mount.appendChild(renderer.domElement);
+    // ---- RESIZE ----
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    };
+    resize();
+    window.addEventListener("resize", resize);
 
-    // --- SPHERE (inside-view panorama) ---
-    const geometry = new THREE.SphereGeometry(500, 60, 40);
-    geometry.scale(-1, 1, 1); // flip inside out
+    // ---- SHADERS ----
+    const vsSource = `
+      attribute vec2 aPos;
+      varying vec2 vUv;
+      void main() {
+        vUv = aPos * 0.5 + 0.5;
+        gl_Position = vec4(aPos, 0.0, 1.0);
+      }
+    `;
 
-    const texture = new THREE.TextureLoader().load("/server-panorama.jpg", (tex) => {
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.minFilter = THREE.LinearFilter;
-      tex.magFilter = THREE.LinearFilter;
-    });
+    const fsSource = `
+      precision highp float;
+      varying vec2 vUv;
+      uniform sampler2D uTex;
+      uniform float uLon;   // horizontal rotation in radians
+      uniform float uLat;   // vertical tilt in radians
+      uniform float uFov;   // vertical FoV in radians
+      uniform float uAspect;
 
-    const material = new THREE.MeshBasicMaterial({ map: texture });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+      const float PI = 3.14159265358979;
 
-    // --- MOUSE TRACKING ---
-    let targetLon = 0;
-    let targetLat = 0;
-    let currentLon = 0;
-    let currentLat = 0;
-    const MOUSE_SENSITIVITY = 18;
-    const LAT_CLAMP = 25; // degrees up/down limit
+      void main() {
+        // Convert screen UV to view ray direction
+        vec2 ndc = vUv * 2.0 - 1.0;
+        ndc.x *= uAspect;
+
+        float halfFov = uFov * 0.5;
+        vec3 ray = normalize(vec3(ndc.x * tan(halfFov), ndc.y * tan(halfFov), 1.0));
+
+        // Rotate by latitude (pitch)
+        float cosLat = cos(uLat);
+        float sinLat = sin(uLat);
+        vec3 rayLat = vec3(
+          ray.x,
+          ray.y * cosLat - ray.z * sinLat,
+          ray.y * sinLat + ray.z * cosLat
+        );
+
+        // Rotate by longitude (yaw)
+        float cosLon = cos(uLon);
+        float sinLon = sin(uLon);
+        vec3 finalRay = vec3(
+          rayLat.x * cosLon - rayLat.z * sinLon,
+          rayLat.y,
+          rayLat.x * sinLon + rayLat.z * cosLon
+        );
+
+        // Convert ray to equirectangular UV
+        float lon = atan(finalRay.x, finalRay.z);
+        float lat = asin(clamp(finalRay.y / length(finalRay), -1.0, 1.0));
+
+        float u = (lon / (2.0 * PI)) + 0.5;
+        float v = (lat / PI) + 0.5;
+
+        gl_FragColor = texture2D(uTex, vec2(u, v));
+      }
+    `;
+
+    function compileShader(type: number, src: string) {
+      const s = gl!.createShader(type)!;
+      gl!.shaderSource(s, src);
+      gl!.compileShader(s);
+      return s;
+    }
+
+    const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+    const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    // ---- FULLSCREEN QUAD ----
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,  1, -1,  -1, 1,
+       1, -1,  1,  1,  -1, 1,
+    ]), gl.STATIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, "aPos");
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    // ---- UNIFORMS ----
+    const uTex    = gl.getUniformLocation(prog, "uTex");
+    const uLon    = gl.getUniformLocation(prog, "uLon");
+    const uLat    = gl.getUniformLocation(prog, "uLat");
+    const uFov    = gl.getUniformLocation(prog, "uFov");
+    const uAspect = gl.getUniformLocation(prog, "uAspect");
+
+    // ---- TEXTURE ----
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    // Placeholder 1×1 pixel while image loads
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([5, 8, 22, 255]));
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      gl!.bindTexture(gl.TEXTURE_2D, texture);
+      gl!.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      gl!.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+      gl!.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl!.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl!.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    };
+    img.src = "/server-panorama.jpg";
+
+    gl.uniform1i(uTex, 0);
+
+    // ---- MOUSE / TOUCH ----
+    let targetLon = 3.2; // start facing server aisle
+    let targetLat = 0.0;
+    let currLon = 3.2;
+    let currLat = 0.0;
 
     const onMouseMove = (e: MouseEvent) => {
-      const cx = mount.clientWidth / 2;
-      const cy = mount.clientHeight / 2;
-      targetLon = -((e.clientX - cx) / cx) * MOUSE_SENSITIVITY;
-      targetLat = ((e.clientY - cy) / cy) * MOUSE_SENSITIVITY * 0.4;
+      const cx = canvas.offsetWidth / 2;
+      const cy = canvas.offsetHeight / 2;
+      targetLon = 3.2 - ((e.clientX - cx) / cx) * 0.4;
+      targetLat = ((e.clientY - cy) / cy) * 0.15;
     };
-
-    // Touch support
     const onTouchMove = (e: TouchEvent) => {
-      if (e.touches.length < 1) return;
-      const cx = mount.clientWidth / 2;
-      const cy = mount.clientHeight / 2;
-      targetLon = -((e.touches[0].clientX - cx) / cx) * MOUSE_SENSITIVITY;
-      targetLat = ((e.touches[0].clientY - cy) / cy) * MOUSE_SENSITIVITY * 0.4;
+      if (!e.touches.length) return;
+      const cx = canvas.offsetWidth / 2;
+      const cy = canvas.offsetHeight / 2;
+      targetLon = 3.2 - ((e.touches[0].clientX - cx) / cx) * 0.4;
+      targetLat = ((e.touches[0].clientY - cy) / cy) * 0.15;
     };
-
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove, { passive: true });
 
-    // --- AUTO ROTATION ---
-    let autoLon = 180; // start facing the server aisle
+    // ---- RENDER LOOP ----
+    let rafId: number;
+    let autoPan = 0;
 
-    // --- ANIMATION LOOP ---
-    let animId: number;
-    const animate = () => {
-      animId = requestAnimationFrame(animate);
+    const render = () => {
+      rafId = requestAnimationFrame(render);
+      autoPan -= 0.0004; // slow auto-rotate
 
-      // Slow auto-pan
-      autoLon -= 0.018;
+      currLon += (targetLon - currLon) * 0.04;
+      currLat += (targetLat - currLat) * 0.04;
 
-      // Smooth lerp toward mouse target
-      currentLon += (targetLon - currentLon) * 0.05;
-      currentLat += (targetLat - currentLat) * 0.05;
+      const aspect = canvas.width / canvas.height;
+      gl!.uniform1f(uLon, currLon + autoPan);
+      gl!.uniform1f(uLat, currLat);
+      gl!.uniform1f(uFov, 1.2); // ~69° vertical FoV
+      gl!.uniform1f(uAspect, aspect);
 
-      const clampedLat = Math.max(-LAT_CLAMP, Math.min(LAT_CLAMP, currentLat));
-      const lon = autoLon + currentLon;
-
-      const phi = THREE.MathUtils.degToRad(90 - clampedLat);
-      const theta = THREE.MathUtils.degToRad(lon);
-
-      camera.lookAt(
-        500 * Math.sin(phi) * Math.cos(theta),
-        500 * Math.cos(phi),
-        500 * Math.sin(phi) * Math.sin(theta)
-      );
-
-      renderer.render(scene, camera);
+      gl!.drawArrays(gl!.TRIANGLES, 0, 6);
     };
-    animate();
-
-    // --- RESIZE HANDLER ---
-    const onResize = () => {
-      if (!mount) return;
-      camera.aspect = mount.clientWidth / mount.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
-    };
-    window.addEventListener("resize", onResize);
+    render();
 
     return () => {
-      cancelAnimationFrame(animId);
+      cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("resize", onResize);
-      renderer.dispose();
-      geometry.dispose();
-      material.dispose();
-      texture.dispose();
-      if (mount.contains(renderer.domElement)) {
-        mount.removeChild(renderer.domElement);
-      }
+      window.removeEventListener("resize", resize);
+      gl!.deleteTexture(texture);
+      gl!.deleteBuffer(buf);
+      gl!.deleteProgram(prog);
     };
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ zIndex: 0 }}
-      aria-hidden="true"
-    >
-      {/* Gradient overlays for depth and readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050816]/80 via-[#050816]/55 to-[#050816]/85 z-10 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/60 via-transparent to-[#050816]/60 z-10 pointer-events-none" />
-      {/* Cyber scan-line effect */}
+    <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} aria-hidden="true">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ display: "block" }}
+      />
+      {/* Readability overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050816]/80 via-[#050816]/50 to-[#050816]/88 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/55 via-transparent to-[#050816]/55 z-10 pointer-events-none" />
+      {/* Cyber scanlines */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,150,255,0.015) 2px, rgba(0,150,255,0.015) 4px)",
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,150,255,0.012) 2px, rgba(0,150,255,0.012) 4px)",
         }}
       />
     </div>
