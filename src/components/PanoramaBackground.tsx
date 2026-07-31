@@ -190,46 +190,31 @@ export default function PanoramaBackground() {
   return (
     <div
       ref={wrapRef}
-      className="absolute inset-0 w-full h-full overflow-hidden"
+      className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >
-      {/* Direct Image Fallback so background is NEVER blank */}
+      {/* High-visibility background image */}
       <img
         src="/server-panorama.jpg"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
-        style={{ filter: "brightness(1.3) contrast(1.2)" }}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ filter: "brightness(1.5) contrast(1.3) saturate(1.2)" }}
       />
 
+      {/* WebGL Canvas for 360 interactive panning */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
-        style={{ display: "block", position: "absolute", inset: 0 }}
+        style={{ display: "block", position: "absolute", inset: 0, opacity: 0.85 }}
       />
 
-      {/* Dark gradient top & bottom for text readability */}
+      {/* Subtle top & bottom readability gradient */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(5,8,22,0.65) 0%, rgba(5,8,22,0.20) 40%, rgba(5,8,22,0.20) 60%, rgba(5,8,22,0.70) 100%)",
-        }}
-      />
-      {/* Side vignette */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(5,8,22,0.35) 0%, transparent 30%, transparent 70%, rgba(5,8,22,0.35) 100%)",
-        }}
-      />
-      {/* Cyber scanlines */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,160,255,0.018) 2px, rgba(0,160,255,0.018) 4px)",
+            "linear-gradient(to bottom, rgba(5,8,22,0.40) 0%, transparent 40%, transparent 60%, rgba(5,8,22,0.50) 100%)",
         }}
       />
     </div>
