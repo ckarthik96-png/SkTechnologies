@@ -255,7 +255,7 @@ function ServicesContent() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto mt-4 leading-relaxed"
           >
-            We offer 15 comprehensive services designed to secure, monitor, and scale corporate systems with high reliability.
+            We offer 18 comprehensive services designed to secure, monitor, and scale corporate systems with high reliability.
           </motion.p>
         </div>
 
@@ -285,6 +285,9 @@ function ServicesContent() {
           <AnimatePresence mode="popLayout">
             {filteredServices.map((service) => {
               const Icon = service.icon;
+              const linkHref = service.id === "data-recovery-srv" 
+                ? "/data-recovery" 
+                : `/contact?service=${encodeURIComponent(service.title)}`;
               return (
                 <motion.div
                   layout
@@ -308,10 +311,10 @@ function ServicesContent() {
                     </p>
                   </div>
                   <Link
-                    href={`/contact?service=${encodeURIComponent(service.title)}`}
+                    href={linkHref}
                     className="text-xs font-semibold text-primary group-hover:text-white flex items-center gap-1.5 mt-auto transition-colors"
                   >
-                    Inquire Service
+                    {service.id === "data-recovery-srv" ? "Get Diagnostics Form" : "Inquire Service"}
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
