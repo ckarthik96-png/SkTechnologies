@@ -23,7 +23,7 @@ import {
   AlertTriangle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroBackground from "@/components/HeroBackground";
+import PanoramaBackground from "@/components/PanoramaBackground";
 import ContactForm from "@/components/ContactForm";
 import Accordion from "@/components/Accordion";
 
@@ -189,11 +189,11 @@ export default function Home() {
 
   return (
     <div className="relative overflow-hidden bg-dark-bg min-h-screen">
-      {/* Dynamic 3D Hero Background Particle System */}
-      <HeroBackground />
 
-      {/* --- 1. HERO SECTION --- */}
+      {/* --- 1. HERO SECTION with 3D Panorama Background --- */}
       <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden">
+        {/* 3D Interactive 360° Data Center Panorama */}
+        <PanoramaBackground />
         <div className="container mx-auto max-w-6xl relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Text & Buttons */}
