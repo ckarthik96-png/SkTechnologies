@@ -190,20 +190,30 @@ export default function PanoramaBackground() {
   return (
     <div
       ref={wrapRef}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full overflow-hidden"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     >
+      {/* Direct Image Fallback so background is NEVER blank */}
+      <img
+        src="/server-panorama.jpg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        style={{ filter: "brightness(1.3) contrast(1.2)" }}
+      />
+
       <canvas
         ref={canvasRef}
-        style={{ display: "block", width: "100%", height: "100%", position: "absolute", inset: 0 }}
+        className="absolute inset-0 w-full h-full"
+        style={{ display: "block", position: "absolute", inset: 0 }}
       />
+
       {/* Dark gradient top & bottom for text readability */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(5,8,22,0.70) 0%, rgba(5,8,22,0.25) 40%, rgba(5,8,22,0.25) 60%, rgba(5,8,22,0.75) 100%)",
+            "linear-gradient(to bottom, rgba(5,8,22,0.65) 0%, rgba(5,8,22,0.20) 40%, rgba(5,8,22,0.20) 60%, rgba(5,8,22,0.70) 100%)",
         }}
       />
       {/* Side vignette */}
@@ -211,7 +221,7 @@ export default function PanoramaBackground() {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(5,8,22,0.40) 0%, transparent 30%, transparent 70%, rgba(5,8,22,0.40) 100%)",
+            "linear-gradient(to right, rgba(5,8,22,0.35) 0%, transparent 30%, transparent 70%, rgba(5,8,22,0.35) 100%)",
         }}
       />
       {/* Cyber scanlines */}
