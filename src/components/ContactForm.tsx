@@ -21,6 +21,7 @@ export default function ContactForm({ defaultService }: { defaultService?: strin
     "Networking Solutions",
     "Cloud Solutions",
     "Cyber Security",
+    "Data Recovery Solutions",
     "CCTV Solutions",
     "Firewall Installation",
     "Server Management",
@@ -58,8 +59,9 @@ export default function ContactForm({ defaultService }: { defaultService?: strin
 
     setTimeout(() => {
       setStatus("success");
-      // Open WhatsApp in a new tab/window
-      window.open(whatsappUrl, "_blank");
+      
+      // Redirect directly to WhatsApp (immune to pop-up blockers)
+      window.location.href = whatsappUrl;
 
       // Reset form after submission
       setFormData({

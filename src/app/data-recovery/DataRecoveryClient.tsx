@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -43,6 +44,51 @@ const steps = [
 ];
 
 export default function DataRecoveryClient() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    mediaType: "Mechanical Hard Drive (HDD)",
+    scenario: "Accidental Deletion",
+    details: "",
+  });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const formattedMessage = `*New Data Recovery Diagnostic Inquiry*\n\n` +
+      `👤 *Name:* ${formData.name}\n` +
+      `✉️ *Email:* ${formData.email}\n` +
+      `📞 *Phone:* ${formData.phone}\n` +
+      `💾 *Media Type:* ${formData.mediaType}\n` +
+      `⚠️ *Scenario:* ${formData.scenario}\n\n` +
+      `📝 *Drive Details & Symptoms:*\n${formData.details}`;
+
+    const whatsappUrl = `https://wa.me/919353427314?text=${encodeURIComponent(formattedMessage)}`;
+
+    setTimeout(() => {
+      setStatus("success");
+      window.location.href = whatsappUrl;
+      
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        mediaType: "Mechanical Hard Drive (HDD)",
+        scenario: "Accidental Deletion",
+        details: "",
+      });
+      
+      setTimeout(() => setStatus("idle"), 5000);
+    }, 1200);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   return (
     <div className="relative overflow-hidden bg-dark-bg min-h-screen pt-12 pb-24">
       {/* Ambient background glows */}
@@ -174,20 +220,121 @@ export default function DataRecoveryClient() {
           </div>
         </div>
 
-        {/* Why Choose Us */}
-        <div className="p-8 rounded-2xl glass-card border border-white/10 text-center max-w-3xl mx-auto relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full filter blur-xl" />
-          <h3 className="text-xl font-bold text-white mb-2">Confidential & Secure Handling</h3>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-6">
-            We sign strict NDA agreements before handling corporate files, ensuring complete security and data privacy.
-          </p>
-          <Link
-            href="/contact?service=Data%20Recovery"
-            className="btn-gradient px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2"
-          >
-            Inquire Safe Recovery
-            <ChevronRight className="w-4 h-4" />
-          </Link>
+        {/* Diagnostic Intake Form */}
+        <div id="diagnostic-form" className="max-w-3xl mx-auto glass-card rounded-2xl p-6 md:p-8 border border-white/10 relative overflow-hidden">
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
+          <div className="text-center mb-8 border-b border-white/5 pb-4">
+            <h3 className="text-lg md:text-xl font-bold text-white mb-2">Safe Diagnostics Request</h3>
+            <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+              Describe your device model and failure symptoms. Our specialists will review the case details and establish a clean lab intake clone ticket.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Phone Number *</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="+91 XXXXX XXXXX"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Email *</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="john@company.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Media Type *</label>
+                <select
+                  name="mediaType"
+                  value={formData.mediaType}
+                  onChange={handleChange}
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+                >
+                  <option value="Mechanical Hard Drive (HDD)">Mechanical Hard Drive (HDD)</option>
+                  <option value="Solid State Drive (SSD/NVMe)">Solid State Drive (SSD/NVMe)</option>
+                  <option value="RAID / Server Array">RAID / Server Array</option>
+                  <option value="USB Flash / Memory Card">USB Flash / Memory Card</option>
+                  <option value="Laptop Storage (Mac/PC)">Laptop Storage (Mac/PC)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Failure Scenario *</label>
+              <select
+                name="scenario"
+                value={formData.scenario}
+                onChange={handleChange}
+                className="w-full bg-[#0b0f19] border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+              >
+                <option value="Accidental Deletion">Accidental Deletion (Emptied Trash)</option>
+                <option value="Formatted Media">Formatted Media (OS reinstallation)</option>
+                <option value="Corrupted Partition">Corrupted Partition (Raw file system)</option>
+                <option value="Water/Liquid Damage">Water / Liquid Spills</option>
+                <option value="Physical Drop (Clicking/No Power)">Physical Drop (Clicking / Stalled)</option>
+                <option value="Ransomware Encryption">Ransomware / Encryption lockout</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Symptoms & Drive Details *</label>
+              <textarea
+                name="details"
+                required
+                rows={4}
+                placeholder="List drive capacity, brand/model, symptoms (e.g. clicking sounds, not recognized in BIOS, liquid spill, etc.)..."
+                value={formData.details}
+                onChange={handleChange}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors resize-none"
+              />
+            </div>
+
+            <div className="pt-2 text-center">
+              {status === "success" ? (
+                <div className="text-emerald-400 text-xs font-bold py-2">
+                  ✓ Ticket generated! Redirecting to WhatsApp desk...
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="btn-gradient w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all disabled:opacity-50 inline-flex items-center justify-center gap-2"
+                >
+                  {status === "submitting" ? "Processing Inquiry..." : "Submit Diagnostic Inquiry"}
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </form>
         </div>
 
       </div>
