@@ -51,8 +51,8 @@ export default function PanoramaBackground() {
 
     // --- 3. CREATE 360° PANORAMA SPHERE ---
     const geometry = new THREE.SphereGeometry(500, 60, 40);
-    // Invert geometry so faces point inwards towards camera
-    geometry.scale(-1, 1, 1);
+    // Invert Z-axis so mesh faces inward and text reads left-to-right correctly
+    geometry.scale(1, 1, -1);
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load("/server-panorama.jpg", () => {
