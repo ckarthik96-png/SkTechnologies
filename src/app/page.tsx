@@ -204,9 +204,9 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-extrabold uppercase tracking-widest text-primary"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-[10px] font-extrabold uppercase tracking-widest text-white backdrop-blur-sm"
             >
-              <Award className="w-3.5 h-3.5" /> ISO Certified IT Services
+              <Award className="w-3.5 h-3.5 text-white" /> ISO Certified IT Services
             </motion.div>
 
             <motion.h1

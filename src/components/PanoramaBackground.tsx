@@ -43,7 +43,10 @@ export default function PanoramaBackground() {
     geometry.scale(-1, 1, 1); // Invert sphere mesh faces for inside viewing
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load("/server-panorama.jpg", () => {
+    const texture = textureLoader.load("/server-panorama.jpg", (tex) => {
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.repeat.x = -1; // Un-mirror text inside 360 sphere
+      tex.center.set(0.5, 0.5);
       renderer.render(scene, camera);
     });
 
