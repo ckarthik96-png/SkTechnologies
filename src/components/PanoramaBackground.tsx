@@ -40,16 +40,12 @@ export default function PanoramaBackground() {
 
     // --- 2. CREATE 360° PANORAMA SPHERE ---
     const geometry = new THREE.SphereGeometry(500, 60, 40);
-    geometry.scale(-1, 1, 1); // Invert sphere horizontally for inside viewing
+    geometry.scale(-1, 1, 1); // Invert sphere mesh faces for inside viewing
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load("/server-panorama.jpg", (tex) => {
-      tex.wrapS = THREE.RepeatWrapping;
-      tex.repeat.x = -1; // Flip texture right-side up horizontally
+    const texture = textureLoader.load("/server-panorama.jpg", () => {
       renderer.render(scene, camera);
     });
-    // In Three.js spherical skyboxes, ensure image orientation is right-side up
-    texture.center.set(0.5, 0.5);
 
     const material = new THREE.MeshBasicMaterial({ map: texture });
     const sphere = new THREE.Mesh(geometry, material);
