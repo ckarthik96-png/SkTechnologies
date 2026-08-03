@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export default function PanoramaBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,6 @@ export default function PanoramaBackground() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Ensure canvas stretches properly
     renderer.domElement.style.position = "absolute";
     renderer.domElement.style.top = "0";
     renderer.domElement.style.left = "0";
@@ -38,23 +38,32 @@ export default function PanoramaBackground() {
 
     container.appendChild(renderer.domElement);
 
-    // --- 2. CREATE 360° PANORAMA SPHERE ---
+    // --- 2. ORBIT CONTROLS (360 Interactive Movement) ---
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = false; // Disabled zoom to prevent disturbing page scroll
+    controls.enablePan = false;
+    controls.enableDamping = true; // Smooth momentum
+    controls.dampingFactor = 0.05;
+
+    // Auto 360 Rotation Speed
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.8;
+
+    // --- 3. CREATE 360° PANORAMA SPHERE ---
     const geometry = new THREE.SphereGeometry(500, 60, 40);
-    geometry.scale(-1, 1, 1); // Reverse interior sphere UV winding so letters read left-to-right
+    // Invert geometry so faces point inwards towards camera
+    geometry.scale(-1, 1, 1);
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load("/server-panorama.jpg", () => {
       renderer.render(scene, camera);
     });
 
-    const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      side: THREE.BackSide,
-    });
+    const material = new THREE.MeshBasicMaterial({ map: texture });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
-    // --- 3. ADD 3D FLOATING CYBER PARTICLES ---
+    // --- 4. ADD 3D GLOWING DATA PARTICLES ---
     const particleCount = 400;
     const particleGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -94,73 +103,17 @@ export default function PanoramaBackground() {
     const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particleSystem);
 
-    // --- 4. ROTATION CONTROL (AUTO-ROTATE + MOUSE DRAG & PAN) ---
-    let isUserInteracting = false;
-    let onPointerDownPointerX = 0;
-    let onPointerDownPointerY = 0;
-    let onPointerDownLon = 0;
-    let onPointerDownLat = 0;
-    let lon = 0; // Directly face the 2 technicians in the server aisle
-    let lat = 0;
-
-    const onPointerDown = (event: MouseEvent | TouchEvent) => {
-      isUserInteracting = true;
-      const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
-      const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
-      onPointerDownPointerX = clientX;
-      onPointerDownPointerY = clientY;
-      onPointerDownLon = lon;
-      onPointerDownLat = lat;
-    };
-
-    const onPointerMove = (event: MouseEvent | TouchEvent) => {
-      if (!isUserInteracting) return;
-      const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
-      const clientY = "touches" in event ? event.touches[0].clientY : event.clientY;
-      lon = (onPointerDownPointerX - clientX) * 0.1 + onPointerDownLon;
-      lat = (clientY - onPointerDownPointerY) * 0.1 + onPointerDownLat;
-    };
-
-    const onPointerUp = () => {
-      isUserInteracting = false;
-    };
-
-    const domElement = renderer.domElement;
-    domElement.style.cursor = "grab";
-
-    domElement.addEventListener("mousedown", onPointerDown as EventListener);
-    window.addEventListener("mousemove", onPointerMove as EventListener);
-    window.addEventListener("mouseup", onPointerUp);
-
-    domElement.addEventListener("touchstart", onPointerDown as EventListener, { passive: true });
-    window.addEventListener("touchmove", onPointerMove as EventListener, { passive: true });
-    window.addEventListener("touchend", onPointerUp);
-
     // --- 5. ANIMATION LOOP ---
     let animId: number;
-
     function animate() {
       animId = requestAnimationFrame(animate);
 
-      if (!isUserInteracting) {
-        lon += 0.05; // Smooth slow auto rotation
-      }
+      // Update 360 camera controls
+      controls.update();
 
-      lat = Math.max(-85, Math.min(85, lat));
-      const phi = THREE.MathUtils.degToRad(90 - lat);
-      const theta = THREE.MathUtils.degToRad(lon);
-
-      const targetVector = new THREE.Vector3(
-        500 * Math.sin(phi) * Math.cos(theta),
-        500 * Math.cos(phi),
-        500 * Math.sin(phi) * Math.sin(theta)
-      );
-
-      camera.lookAt(targetVector);
-
-      // Rotate particle field
-      particleSystem.rotation.y += 0.001;
-      particleSystem.rotation.x += 0.0004;
+      // Slowly rotate particle field independently for realistic depth
+      particleSystem.rotation.y += 0.0005;
+      particleSystem.rotation.x += 0.0002;
 
       renderer.render(scene, camera);
     }
@@ -180,13 +133,7 @@ export default function PanoramaBackground() {
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", handleResize);
-      domElement.removeEventListener("mousedown", onPointerDown as EventListener);
-      window.removeEventListener("mousemove", onPointerMove as EventListener);
-      window.removeEventListener("mouseup", onPointerUp);
-      domElement.removeEventListener("touchstart", onPointerDown as EventListener);
-      window.removeEventListener("touchmove", onPointerMove as EventListener);
-      window.removeEventListener("touchend", onPointerUp);
-
+      controls.dispose();
       renderer.dispose();
       geometry.dispose();
       material.dispose();
