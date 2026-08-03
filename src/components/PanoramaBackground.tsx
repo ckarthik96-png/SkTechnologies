@@ -40,17 +40,16 @@ export default function PanoramaBackground() {
 
     // --- 2. CREATE 360° PANORAMA SPHERE ---
     const geometry = new THREE.SphereGeometry(500, 60, 40);
-    geometry.scale(-1, 1, 1); // Invert sphere mesh faces for inside viewing
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load("/server-panorama.jpg", (tex) => {
-      tex.wrapS = THREE.RepeatWrapping;
-      tex.repeat.x = -1; // Un-mirror text inside 360 sphere
-      tex.center.set(0.5, 0.5);
+    const texture = textureLoader.load("/server-panorama.jpg", () => {
       renderer.render(scene, camera);
     });
 
-    const material = new THREE.MeshBasicMaterial({ map: texture });
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      side: THREE.BackSide, // Render interior faces naturally without flipping texture
+    });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
