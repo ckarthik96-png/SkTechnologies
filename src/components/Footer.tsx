@@ -113,7 +113,7 @@ export default function Footer() {
                 className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1.5"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-blue-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Company Profile (PDF)
+                Company Profile
               </a>
             </li>
             <li>
@@ -123,7 +123,7 @@ export default function Footer() {
                 className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1.5"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-emerald-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                AMC Service Sheet (PDF)
+                AMC Service Sheet
               </a>
             </li>
             <li>
@@ -133,7 +133,7 @@ export default function Footer() {
                 className="text-xs text-slate-400 hover:text-primary transition-colors flex items-center gap-1.5"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-violet-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Product Catalog (PDF)
+                Product Catalog
               </a>
             </li>
           </ul>
