@@ -27,12 +27,9 @@ export default function Footer() {
         {/* Company Info */}
         <div className="flex flex-col gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-8 h-8 flex items-center justify-center">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <polygon points="50 5, 90 25, 90 75, 50 95, 10 75, 10 25" fill="none" stroke="#2563eb" strokeWidth="8" />
-                <circle cx="50" cy="50" r="10" fill="#06b6d4" />
-              </svg>
-            </div>
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-white/10 p-1 flex items-center justify-center shrink-0">
+            <img src="/logo.png" alt="SkyEagle Logo" className="w-full h-full object-contain" />
+          </div>
             <span className="text-lg font-bold tracking-tight text-white">
               SkyEagle <span className="text-secondary text-xs">Technologies</span>
             </span>

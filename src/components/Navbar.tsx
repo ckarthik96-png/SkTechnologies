@@ -66,18 +66,12 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 group">
-          <div className="relative w-9 h-9 flex items-center justify-center">
-            <svg viewBox="0 0 100 100" className="w-full h-full transform group-hover:rotate-45 transition-transform duration-500">
-              <defs>
-                <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#2563eb" />
-                  <stop offset="100%" stopColor="#06b6d4" />
-                </linearGradient>
-              </defs>
-              <polygon points="50 5, 90 25, 90 75, 50 95, 10 75, 10 25" fill="none" stroke="url(#logo-grad)" strokeWidth="6" />
-              <polygon points="50 20, 80 35, 80 65, 50 80, 20 65, 20 35" fill="none" stroke="url(#logo-grad)" strokeWidth="3" strokeDasharray="6,4" />
-              <circle cx="50" cy="50" r="10" fill="#2563eb" />
-            </svg>
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-primary/50 transition-all duration-300 p-1 flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/10">
+            <img 
+              src="/logo.png" 
+              alt="SkyEagle Technologies Logo" 
+              className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500" 
+            />
           </div>
           <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-blue-400 bg-clip-text text-transparent">
             SkyEagle<span className="text-primary text-sm font-semibold ml-0.5 font-sans">TM</span>
