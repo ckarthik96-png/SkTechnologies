@@ -1183,8 +1183,9 @@ export default function Home() {
                   <div>
                     <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Office Address</h4>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Srinidhi Layout, Konanakunte,<br />
-                      Bengaluru, Karnataka - 560062, India
+                      No.632D, 3rd Floor , 2nd Cross, 2nd Main,<br />
+                      RBI Layout,7th Phase , JP nagar,<br />
+                      Bangalore- 560078
                     </p>
                     <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider mt-1.5">
                       Service Areas: Bengaluru, Mysuru, Mangaluru, Hubballi, Karnataka
@@ -1220,7 +1221,7 @@ export default function Home() {
               {/* Embedded Interactive Map */}
               <div className="h-64 rounded-2xl overflow-hidden border border-white/10 relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15557.733519965022!2d77.5585!3d12.8837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15be212c4ab1%3A0xe212c6a0c0000000!2sKonanakunte%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1722335123456!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.892341258902!2d77.5852101!3d12.8887412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae153ec3d7589d%3A0x7d6a54332e128b9d!2sRBI%20Layout%2C%207th%20Phase%2C%20J.%20P.%20Nagar%2C%20Bengaluru%2C%20Karnataka%20560078!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

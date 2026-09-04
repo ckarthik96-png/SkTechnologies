@@ -71,9 +71,10 @@ function ContactPageContent() {
             <div>
               <h5 className="text-xs text-slate-500 uppercase tracking-widest mb-0.5">Corporate Address</h5>
               <p className="text-sm text-slate-300 leading-relaxed">
-                SkyEagle Technologies<br />
-                Srinidhi Layout, Konanakunte,<br />
-                Bengaluru, Karnataka - 560062, India
+                Skyeagle technologies<br />
+                No.632D, 3rd Floor, 2nd Cross, 2nd Main,<br />
+                RBI Layout, 7th Phase, JP nagar,<br />
+                Bangalore- 560078
               </p>
             </div>
           </div>
@@ -93,7 +94,7 @@ function ContactPageContent() {
         <div className="w-full h-[280px] rounded-2xl overflow-hidden border border-white/10 relative">
           <iframe
             title="SkyEagle Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.373465819777!2d77.56846187593256!3d12.883713087423588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1565576d337d%3A0xe54d2dc8c8d8d3f1!2sSrinidhi%20Layout%2C%20Konanakunte%2C%20Bengaluru%2C%20Karnataka%20560062!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.892341258902!2d77.5852101!3d12.8887412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae153ec3d7589d%3A0x7d6a54332e128b9d!2sRBI%20Layout%2C%207th%20Phase%2C%20J.%20P.%20Nagar%2C%20Bengaluru%2C%20Karnataka%20560078!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
             width="100%"
             height="100%"
             style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)" }}

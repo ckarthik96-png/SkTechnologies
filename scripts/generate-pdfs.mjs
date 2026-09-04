@@ -52,7 +52,7 @@ function drawPill(page, x, y, label, font, { bg = PRIMARY, fg = WHITE, fontSize 
 function drawFooter(page, font, pageNum, total) {
   const { width } = page.getSize();
   drawHRule(page, 50, { color: SLATE_DK });
-  page.drawText("SkyEagle Technologies  |  Konanakunte, Bengaluru 560062  |  +91 93534 27314  |  sales@skyeagletechno.com", {
+  page.drawText("SkyEagle Technologies  |  RBI Layout, JP nagar, Bangalore 560078  |  +91 93534 27314  |  sales@skyeagletechno.com", {
     x: 40, y: 34, size: 7, font, color: SLATE,
   });
   page.drawText(`Page ${pageNum} / ${total}`, {
@@ -133,7 +133,7 @@ async function buildCompanyProfile() {
   // Address block bottom
   cover.drawRectangle({ x: 0, y: 0, width, height: 90, color: SLATE_DK });
   cover.drawText("SkyEagle Technologies", { x: 40, y: 65, size: 11, font: fontB, color: WHITE });
-  cover.drawText("Srinidhi Layout, Konanakunte, Bengaluru, Karnataka -- 560062", { x: 40, y: 50, size: 9, font: fontR, color: SLATE });
+  cover.drawText("No.632D, 3rd Floor, 2nd Cross, 2nd Main, RBI Layout, 7th Phase, JP nagar, Bangalore- 560078", { x: 40, y: 50, size: 8, font: fontR, color: SLATE });
   cover.drawText("+91 93534 27314  |  sales@skyeagletechno.com  |  skyeagletechno.shawanreddy.com", { x: 40, y: 35, size: 9, font: fontR, color: SLATE });
   cover.drawText("Confidential -- 2025", { x: width - 120, y: 20, size: 8, font: fontR, color: SLATE });
 
@@ -224,7 +224,7 @@ async function buildCompanyProfile() {
   y -= 10;
   y = drawSection(p3, "Contact Information", fontR, fontB, y);
   y = drawKeyValue(p3, "Company", "SkyEagle Technologies", fontR, fontB, y);
-  y = drawKeyValue(p3, "Address", "Srinidhi Layout, Konanakunte, Bengaluru 560062", fontR, fontB, y);
+  y = drawKeyValue(p3, "Address", "No.632D, 3rd Floor, 2nd Cross, 2nd Main, RBI Layout, 7th Phase, JP nagar, Bangalore- 560078", fontR, fontB, y);
   y = drawKeyValue(p3, "Phone / WhatsApp", "+91 93534 27314 (Saarika)", fontR, fontB, y);
   y = drawKeyValue(p3, "Email", "sales@skyeagletechno.com", fontR, fontB, y);
   y = drawKeyValue(p3, "Website", "https://skyeagletechno.shawanreddy.com", fontR, fontB, y);

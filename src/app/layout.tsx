@@ -58,10 +58,10 @@ const localBusinessSchema = {
   "telephone": "+919353427314",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Srinidhi Layout, Konanakunte",
+    "streetAddress": "No.632D, 3rd Floor, 2nd Cross, 2nd Main, RBI Layout, 7th Phase, JP nagar",
     "addressLocality": "Bengaluru",
     "addressRegion": "Karnataka",
-    "postalCode": "560062",
+    "postalCode": "560078",
     "addressCountry": "IN"
   },
   "geo": {

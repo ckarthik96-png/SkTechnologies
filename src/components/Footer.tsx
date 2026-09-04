@@ -146,8 +146,9 @@ export default function Footer() {
             <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
             <div className="space-y-1">
               <p className="text-xs text-slate-400 leading-relaxed">
-                Srinidhi Layout, Konanakunte,<br />
-                Bengaluru, Karnataka - 560062, India
+                No.632D, 3rd Floor, 2nd Cross, 2nd Main,<br />
+                RBI Layout, 7th Phase, JP nagar,<br />
+                Bangalore- 560078, India
               </p>
               <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
                 Service Areas: Bengaluru, Mysuru, Karnataka

@@ -60,7 +60,7 @@ export default function AboutClient() {
               Securing Office Networks & Cloud Nodes Since Inception
             </h2>
             <p className="text-sm text-slate-400 leading-relaxed">
-              SkyEagle Technologies was established with a singular vision: to bridge the gap between high-level enterprise IT architectures and mid-tier corporate systems. Based out of Srinidhi Layout, Konanakunte, Bengaluru, we support businesses across Karnataka with fast onsite deployments and proactive remote support.
+              SkyEagle Technologies was established with a singular vision: to bridge the gap between high-level enterprise IT architectures and mid-tier corporate systems. Based out of RBI Layout, JP nagar, Bangalore, we support businesses across Karnataka with fast onsite deployments and proactive remote support.
             </p>
             <p className="text-sm text-slate-400 leading-relaxed">
               Led by Saarika and our board of certified network engineers, we maintain and secure endpoints for over 500 active business installations, offering customized Annual Maintenance Contracts (AMC) that protect company resources round-the-clock.
