@@ -65,16 +65,16 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 group">
-          <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white/10 border border-white/20 group-hover:border-primary/60 transition-all duration-300 p-0.5 flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/20">
+        <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3.5 group">
+          <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden bg-white/10 border border-white/20 group-hover:border-primary/60 transition-all duration-300 p-1 flex items-center justify-center shrink-0 shadow-xl shadow-blue-500/20">
             <img 
               src="/logo-icon.png" 
               alt="SkyEagle Technologies Logo" 
               className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500" 
             />
           </div>
-          <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-blue-400 bg-clip-text text-transparent">
-            SkyEagle<span className="text-primary text-sm font-semibold ml-0.5 font-sans">TM</span>
+          <span className="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-blue-400 bg-clip-text text-transparent">
+            SkyEagle<span className="text-primary text-base font-bold ml-0.5 font-sans">TM</span>
           </span>
         </Link>
 

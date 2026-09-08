@@ -25,13 +25,12 @@ export default function Footer() {
 
       <div className="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
         {/* Company Info */}
-        <div className="flex flex-col gap-4">
-          <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white/10 border border-white/20 p-0.5 flex items-center justify-center shrink-0 shadow-md shadow-blue-500/10">
-            <img src="/logo-icon.png" alt="SkyEagle Logo" className="w-full h-full object-contain" />
-          </div>
-            <span className="text-lg font-bold tracking-tight text-white">
-              SkyEagle <span className="text-secondary text-xs">Technologies</span>
+          <Link href="/" className="flex items-center gap-3.5">
+            <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-white/10 border border-white/20 p-1 flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/10">
+              <img src="/logo-icon.png" alt="SkyEagle Logo" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-xl font-extrabold tracking-tight text-white">
+              SkyEagle <span className="text-secondary text-sm font-bold block">Technologies</span>
             </span>
           </Link>
           <p className="text-xs text-slate-400 leading-relaxed">
