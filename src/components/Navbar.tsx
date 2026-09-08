@@ -66,9 +66,9 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-primary/50 transition-all duration-300 p-1 flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/10">
+          <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white/10 border border-white/20 group-hover:border-primary/60 transition-all duration-300 p-0.5 flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/20">
             <img 
-              src="/logo.png" 
+              src="/logo-icon.png" 
               alt="SkyEagle Technologies Logo" 
               className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500" 
             />

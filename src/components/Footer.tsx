@@ -27,8 +27,8 @@ export default function Footer() {
         {/* Company Info */}
         <div className="flex flex-col gap-4">
           <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-white/10 p-1 flex items-center justify-center shrink-0">
-            <img src="/logo.png" alt="SkyEagle Logo" className="w-full h-full object-contain" />
+          <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white/10 border border-white/20 p-0.5 flex items-center justify-center shrink-0 shadow-md shadow-blue-500/10">
+            <img src="/logo-icon.png" alt="SkyEagle Logo" className="w-full h-full object-contain" />
           </div>
             <span className="text-lg font-bold tracking-tight text-white">
               SkyEagle <span className="text-secondary text-xs">Technologies</span>

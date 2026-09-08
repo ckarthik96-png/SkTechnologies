@@ -34,8 +34,8 @@ export default function Preloader() {
           className="fixed inset-0 z-[9999] bg-[#050816] flex flex-col items-center justify-center gap-4"
         >
           {/* Glowing Center Logo Symbol */}
-          <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-white/5 border border-primary/30 p-2 flex items-center justify-center shadow-2xl shadow-blue-500/20">
-            <img src="/logo.png" alt="SkyEagle Logo" className="w-full h-full object-contain animate-pulse" />
+          <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-white/10 border border-primary/40 p-1 flex items-center justify-center shadow-2xl shadow-blue-500/30">
+            <img src="/logo-icon.png" alt="SkyEagle Logo" className="w-full h-full object-contain animate-pulse" />
           </div>
           
           <motion.div

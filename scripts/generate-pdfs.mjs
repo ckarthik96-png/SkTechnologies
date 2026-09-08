@@ -101,10 +101,14 @@ async function buildCompanyProfile() {
     cover.drawCircle({ x: cx, y: cy, size: 22, color: rgb(0.1, 0.22, 0.55), opacity: 0.4, borderColor: PRIMARY, borderWidth: 1 });
   });
 
-  // Logo hex outline
-  cover.drawCircle({ x: 100, y: height - 90, size: 30, borderColor: PRIMARY, borderWidth: 2, color: DARK_BG });
-  cover.drawCircle({ x: 100, y: height - 90, size: 10, color: PRIMARY });
-  cover.drawText("SET", { x: 80, y: height - 86, size: 9, font: fontB, color: WHITE });
+  // Embedded Logo
+  try {
+    const logoPngBytes = fs.readFileSync(path.join(process.cwd(), 'public', 'logo-icon.png'));
+    const logoPng = await doc.embedPng(logoPngBytes);
+    cover.drawImage(logoPng, { x: 40, y: height - 110, width: 60, height: 60 });
+  } catch (err) {
+    cover.drawCircle({ x: 70, y: height - 80, size: 25, color: PRIMARY });
+  }
 
   cover.drawText("COMPANY PROFILE", { x: 40, y: height - 160, size: 10, font: fontB, color: PRIMARY });
   cover.drawText("SkyEagle", { x: 40, y: height - 200, size: 42, font: fontB, color: WHITE });
